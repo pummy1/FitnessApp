@@ -5,7 +5,6 @@
  * @format
  * @flow strict-local
  */
-
 import React from 'react';
 import {
     SafeAreaView,
@@ -18,7 +17,7 @@ import {
     Button,
     Alert,
     Image,
-    ImageBackground
+    ImageBackground, TouchableOpacity,
 } from 'react-native';
 import {
     Header,
@@ -27,24 +26,76 @@ import {
     DebugInstructions,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Screen1 from './Screen1';
+import Screen2 from './Screen2';
+import Screen3 from './Screen3';
+import HomeScreen from './HomeScreen';
+
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import FirstStepSig from './FirstStepSig';
 import First from './First';
 import Login from './Login';
-
-const Stack = createStackNavigator();
-const App: () => React$Node = () => {
+import SideMenu from './SideMenu';
+const NavigationDrawerStructure = (props)=> {
+    //Structure for the navigatin Drawer
+    const toggleDrawer = () => {
+        //Props to open/close the drawer
+        props.navigationProps.toggleDrawer();
+    };
 
     return (
+        <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity onPress={()=> toggleDrawer()}>
+                {/*Donute Button Image */}
+                <Image
+                    source={{uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png'}}
+                    style={{ width: 25, height: 25, marginLeft: 5 }}
+                />
+            </TouchableOpacity>
+        </View>
+    );
+}
 
+function getHeaderTitle(route) {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Get';
+
+    switch (routeName) {
+        case 'HomeScreen':
+            return 'Home';
+        case 'ExploreScreen':
+            return 'Explore';
+        case 'BottomTabStack':
+            return 'Home';
+    }
+}
+
+const App: () => React$Node = () => {
+    return (
         <>
             <StatusBar barStyle="dark-content" />
+            {/*<NavigationContainer>*/}
+            {/*    <Drawer.Navigator*/}
+            {/*        drawerContentOptions={{*/}
+            {/*            activeTintColor: '#e91e63',*/}
+            {/*            itemStyle: { marginVertical: 5 },*/}
+            {/*        }}>*/}
+            {/*        <Drawer.Screen*/}
+            {/*            name="Get"*/}
+            {/*            options={{ drawerLabel: 'Home Screen Option' }}*/}
+            {/*            component={First} />*/}
 
+            {/*    </Drawer.Navigator>*/}
+            {/*</NavigationContainer>*/}
             <NavigationContainer>
+
                 <Stack.Navigator initialRouteName="Get"  screenOptions={{
                     headerShown: false
                 }}>
@@ -60,7 +111,10 @@ const App: () => React$Node = () => {
                         name="FirstStepSig"
                         component={FirstStepSig}
                     />
-
+                    <Stack.Screen
+                        name="HomeScreen"
+                        component={HomeScreen}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </>

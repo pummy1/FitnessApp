@@ -29,7 +29,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button'
-const FirstStepSig: () => React$Node = () => {
+const FirstStepSig: () => React$Node = ({ navigation }) => {
 // export default class First extends React.Component {
    // const [checked, setChecked] = React.useState('first');
     return (
@@ -97,7 +97,8 @@ const FirstStepSig: () => React$Node = () => {
 
 
                         <View style={styles.bottom}>
-                            <TouchableOpacity style={styles.buttoncontainerSignIn}>
+                            <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                              onPress={() => navigation.navigate('HomeScreen')}>
                                 <Text style={styles.headerbarButonSignIn}>You have an account ? Login Now</Text>
                             </TouchableOpacity>
 
