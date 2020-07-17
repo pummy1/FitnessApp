@@ -34,7 +34,9 @@ import Screen1 from './Screen1';
 import Screen2 from './Screen2';
 import Screen3 from './Screen3';
 import HomeScreen from './HomeScreen';
-
+import Forget from './Forget';
+import Login from './Login';
+import Homeredir from './Homeredir';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,7 +44,6 @@ import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import FirstStepSig from './FirstStepSig';
 import First from './First';
-import Login from './Login';
 import SideMenu from './SideMenu';
 const NavigationDrawerStructure = (props)=> {
     //Structure for the navigatin Drawer
@@ -114,6 +115,13 @@ const App: () => React$Node = () => {
                     <Stack.Screen
                         name="HomeScreen"
                         component={HomeScreen}
+                    />
+                    <Stack.Screen name="Forget"
+                                  component={Forget}
+                                  />
+                    <Stack.Screen
+                        name="Homeredir"
+                        component={Homeredir}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

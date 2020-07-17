@@ -22,7 +22,7 @@ import {
     ImageBackground, TouchableOpacity,
 } from 'react-native';
 
-const Login: () => props = () => {
+const Login: () => React$Node = ({ navigation }) => {
     let [userEmail, setUserEmail] = useState('');
     let [userPassword, setUserPassword] = useState('');
     const handleSubmitPress = () => {
@@ -59,7 +59,8 @@ const Login: () => props = () => {
                 if (responseJson.status == 1) {
                     AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
                     console.log(responseJson.data[0].user_id);
-                    props.navigation.navigate('DrawerNavigationRoutes');
+                    navigation.navigate('HomeScreen');
+                    // props.navigation.navigate('DrawerNavigationRoutes');
                 } else {
                    // setErrortext('Please check your email id or password');
                     console.log('Please check your email id or password');
@@ -117,10 +118,18 @@ const Login: () => props = () => {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text style = {styles.fd}>Forgot Password ?</Text>
+                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                      onPress={() => navigation.navigate('Homeredir')}>
+                        <Text style = {styles.fd}>Forgot Password ?</Text>
+                    </TouchableOpacity>
+
                 </View>
                 <View>
-                    <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
+                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                      onPress={() => navigation.navigate('FirstStepSig')}>
+                        <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
+                    </TouchableOpacity>
+
                 </View>
             </ImageBackground>
         </>
