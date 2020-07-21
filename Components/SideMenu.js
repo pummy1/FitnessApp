@@ -101,7 +101,6 @@ export default class SideMenu extends Component {
 
         <View style={styles.footerContainer}>
           <Text style={styles.textSt}>Logout</Text>
->>>>>>> 019eba049187263faf13bed233c0f090d47172a4
         </View>
       </View>
     );

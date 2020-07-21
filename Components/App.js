@@ -37,17 +37,14 @@ import Screen3 from './Screen3';
 import HomeScreen from './HomeScreen';
 import Forget from './Forget';
 import Login from './Login';
-import Homeredir from './Homeredir';
-const Stack = createStackNavigator();
+import FirstStepSig from './FirstStepSig';
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 import 'react-native-gesture-handler';
 import { createStackNavigator } from '@react-navigation/stack';
 import SideMenu from './SideMenu';
 import First from './First';
-import Login from './Login';
 import Homeredir from './Homeredir';
-import Screen1 from './Screen1';
 const Stack = createStackNavigator();
 const App: () => React$Node = () => {
 
