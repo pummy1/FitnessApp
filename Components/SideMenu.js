@@ -1,60 +1,107 @@
-/*Example of Navigation Drawer with Sectioned Menu*/
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import {NavigationActions} from 'react-navigation';
-import {ScrollView, Text, View, StyleSheet} from 'react-native';
 
-class SideMenu extends Component {
+import React, { Component } from 'react';
+import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { Icon } from 'react-native-elements';
+
+export default class SideMenu extends Component {
   constructor() {
     super();
-    /*Array of the sidebar navigation option with 
-    Heading, Subheading and screen to navigate.*/
-    //Sreen to navigate can be any screen defined in Drawer Navigator in App.js
-    this.options = [
+    //Setting up the Main Top Large Image of the Custom Sidebar
+    // this.proileImage ='../img/Recovered.png';
+    //Array of the sidebar navigation option with icon and screen to navigate
+    //This screens can be any screen defined in Drawer Navigator in App.js
+    //You can find the Icons from here https://material.io/tools/icons/
+    this.items = [
       {
-        mainHeading: 'Main  Heading 1',
-        subOptions: [
-          {secondaryHeading: 'First Screen', navigationPath: 'First'},
-        ],
+        navOptionThumb: 'camera',
+        navOptionName: 'Home',
+        screenToNavigate: 'First',
       },
       {
-        mainHeading: 'Main Heading 2',
-        subOptions: [
-          {secondaryHeading: 'Second Screen', navigationPath: 'Second'},
-          {secondaryHeading: 'Third Screen', navigationPath: 'Third'},
-        ],
+        navOptionThumb: 'image',
+        navOptionName: 'About Us',
+        screenToNavigate: 'Second',
+      },
+      {
+        navOptionThumb: 'camera',
+        navOptionName: 'Profile',
+        screenToNavigate: 'Third',
+      },
+      {
+        navOptionThumb: 'image',
+        navOptionName: 'Contact Us',
+        screenToNavigate: 'Second',
+      },
+      {
+        navOptionThumb: 'image',
+        navOptionName: 'Share',
+        screenToNavigate: 'Third',
       },
     ];
   }
-
-  navigateToScreen = (route) => () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route,
-    });
-    this.props.navigation.dispatch(navigateAction);
-  };
-
+  
+  
   render() {
     return (
       <View style={styles.container}>
+        {/*Top Large Image */}
+            <View
+              style={{
+                width: '100%',
+                height: '20%',
+                backgroundColor: '#3b4145',
+                alignItems: 'center',
+              }}>
+              <Image
+                source={require('../img/Recovered.png')}
+                style={styles.sideMenuProfileIcon}
+              />
+              {/*Divider between Top Image and Sidebar Option*/}
+            </View>
         <ScrollView>
-          <View>
-            {this.options.map((option, key) => (
-              <View>
-                <Text style={styles.mainHeading}>{option.mainHeading}</Text>
-                {option.subOptions.map((item, key) => (
-                  <View style={styles.secondaryHeading} key={key}>
-                    <Text onPress={this.navigateToScreen(item.navigationPath)}>
-                      {item.secondaryHeading}
-                    </Text>
+          <View style={styles.sideMenuContainer}>
+            
+            {/*Setting up Navigation Options from option array using loop*/}
+            <View style={{width: '100%'}}>
+              {this.items.map((item, key) => (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    backgroundColor:
+                      global.currentScreenIndex === key ? '#f9a616' : '#ffffff',
+                  }}
+                  key={key}>
+                  <View style={{marginRight: 10, marginLeft: 20}}>
+                    <Icon
+                      name={item.navOptionThumb}
+                      size={25}
+                      color="#3b4145"
+                    />
                   </View>
-                ))}
-              </View>
-            ))}
+                  <Text
+                    style={{
+                      fontSize: 15,
+                      color:
+                        global.currentScreenIndex === key ? '#ffffff' : '#3b4145',
+                    }}
+                    onPress={() => {
+                      global.currentScreenIndex = key;
+                      this.props.navigation.navigate(item.screenToNavigate);
+                    }}>
+                    {item.navOptionName}
+                  </Text>
+                </View>
+              ))}
+            </View>
           </View>
         </ScrollView>
+
         <View style={styles.footerContainer}>
-          <Text>This is my fixed footer</Text>
+          <Text style={styles.textSt}>Logout</Text>
+>>>>>>> 019eba049187263faf13bed233c0f090d47172a4
         </View>
       </View>
     );
@@ -63,21 +110,28 @@ class SideMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
     flex: 1,
   },
-  secondaryHeading: {
-    padding: 10,
+  sideMenuContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  
   },
-  mainHeading: {
-    paddingVertical: 10,
-    paddingHorizontal: 5,
-    backgroundColor: 'lightgrey',
+  sideMenuProfileIcon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
   },
   footerContainer: {
     padding: 20,
-    backgroundColor: 'lightgrey',
+    backgroundColor: '#f9a616',
+    alignItems: 'center',
+  },
+  textSt: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize:20,
   },
 });
-
-export default SideMenu;

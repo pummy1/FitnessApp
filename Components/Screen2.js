@@ -96,13 +96,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textstl: {
-    fontWeight: 'bold',
+
+    fontFamily: 'Arial',
     color: '#fff',
     textAlign: 'center',
     paddingTop: 30,
   },
   headingstl: {
     fontWeight: 'bold',
+
+    fontFamily: 'Open Sans',
     textAlign: 'center',
     paddingTop: 10,
     paddingBottom: 10,

@@ -81,14 +81,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textstl: {
-    color: '#fff',
+
     fontFamily: 'Arial',
+    color: '#fff',
     textAlign: 'center',
     paddingTop: 30,
   },
   headingstl: {
-    backgroundColor: '#2e3337',
+    fontWeight: 'bold',
     fontFamily: 'Open Sans',
+    backgroundColor: '#2e3337',
     color: '#b0b0b0',
     textAlign: 'center',
     paddingTop: 10,

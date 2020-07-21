@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         marginVertical: 1,
     },
     textstl: {
-        fontWeight: 'bold',
+        fontFamily: 'Open Sans',
         color: '#ffffff',
         textAlign: 'center',
         fontSize: 25,

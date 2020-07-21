@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     marginVertical: 1,
   },
   textstl: {
-    fontWeight: 'bold',
+
+    fontFamily: 'Arial',
     color: '#ffffff',
     textAlign: 'center',
     fontSize:18,
@@ -88,6 +89,8 @@ const styles = StyleSheet.create({
   },
   headingstl: {
     fontWeight: 'bold',
+
+    fontFamily: 'Open Sans',
     backgroundColor: '#2e3337',
     color: '#b0b0b0',
     textAlign: 'center',
