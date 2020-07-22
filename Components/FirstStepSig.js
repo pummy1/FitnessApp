@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -32,91 +32,174 @@ import {
     DebugInstructions,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import FlipToggle from 'react-native-flip-toggle-button'
+import FlipToggle from 'react-native-flip-toggle-button';
+import apiConfig from './config';
+
 const FirstStepSig: () => React$Node = ({ navigation }) => {
+
+    const url = apiConfig;
+    let [Username, setUsername] = useState('');
+    let [Userpassword, setUserpassword] = useState('');
+    
+    const handleSubmitPress = () => {
+        if (!Username) {
+            alert('Please fill Email');
+            return;
+        }
+        if (!Userpassword) {
+          alert('Please fill Password');
+          return;
+        }
+        if (Username != null && Userpassword != null) {
+          let data = new FormData();
+          data.append('email', Username);
+          data.append('password', Userpassword);
+
+          //POST request
+          fetch(
+            'http://zanjo.io/projects/fitnessapp/signup_one_1.php',
+            {
+              method: 'POST', //Request Type
+              body: data, //post body
+              headers: {
+                //Header Defination
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+              },
+            },
+          )
+            .then(response => response.json())
+            //If response is in json then in success
+            .then(responseJson => {
+              alert(JSON.stringify(responseJson));
+              navigation.navigate('Homeredir');
+              console.log(responseJson);
+            })
+            //If response is not in json then in error
+            .catch(error => {
+              alert(JSON.stringify(error));
+              console.error(error);
+            });
+        }
+        
+    }
 // export default class First extends React.Component {
    // const [checked, setChecked] = React.useState('first');
     return (
-        <>
-            <StatusBar barStyle="default"/>
+      <>
+        <StatusBar barStyle="default" />
 
-                <View style={styles.container}>
-                    <ImageBackground  source={require('../img/1.jpg')} style={styles.image}>
-                        <Image source={require('../img/fit-logo-Recovered.png')}
-                               style={styles.tinyLogo}>
-                        </Image>
-                        <Text style={styles.header}>Signup to stay fit</Text>
-                        <Text style={styles.headerbar}>Save Money With Club Membership Card</Text>
-                        <KeyboardAvoidingView
-                            behavior={Platform.OS == "android" ? "padding" : "height"}
-                            style={styles.container}
-                        >
+        <View style={styles.container}>
+          <ImageBackground
+            source={require('../img/1.jpg')}
+            style={styles.image}>
+            <Image
+              source={require('../img/fit-logo-Recovered.png')}
+              style={styles.tinyLogo}
+            />
+            <Text style={styles.header}>Signup to stay fit</Text>
+            <Text style={styles.headerbar}>
+              Save Money With Club Membership Card
+            </Text>
+            <KeyboardAvoidingView
+              behavior={Platform.OS == 'android' ? 'padding' : 'height'}
+              style={styles.container}>
+              <View style={styles.SectionStyleUsername}>
+                <Image
+                  source={require('../img/email.png')}
+                  style={styles.imageStyle}
+                />
 
-                        <View style={styles.SectionStyleUsername}>
+                <TextInput
+                  style={styles.textinput}
+                  placeholder="Username"
+                  placeholderTextColor="#fff"
+                  underlineColorAndroid={'transparent'}
+                  onChangeText={Username => setUsername(Username)}
+                />
+              </View>
 
-                            <Image source={require('../img/email.png')} style={styles.imageStyle} />
+              <View style={styles.SectionStyle}>
+                <Image
+                  source={require('../img/password-(1).png')}
+                  style={styles.imageStyle}
+                />
 
-                            <TextInput  style={styles.textinput} placeholder="Username" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
+                <TextInput
+                  style={styles.textinput}
+                  placeholder="Password"
+                  onChangeText={Userpassword =>
+                    setUserpassword(Userpassword)
+                  }
+                  placeholderTextColor="#fff"
+                  underlineColorAndroid={'transparent'}
+                />
+              </View>
 
-                        </View>
+              <View style={styles.SectionStyle}>
+                <Image
+                  source={require('../img/password.png')}
+                  style={styles.imageStyle}
+                />
 
-                        <View style={styles.SectionStyle}>
-
-                            <Image source={require('../img/password-(1).png')} style={styles.imageStyle} />
-
-                            <TextInput  style={styles.textinput} placeholder="Password" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-
-                        </View>
-
-                        <View style={styles.SectionStyle}>
-
-                            <Image source={require('../img/password.png')} style={styles.imageStyle} />
-
-                            <TextInput  style={styles.textinput} placeholder="Confirm Password" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-
-                        </View>
-
-
-                        <TouchableOpacity style={styles.buttoncontainer}
+                <TextInput
+                  style={styles.textinput}
+                  placeholder="Confirm Password"
+                  placeholderTextColor="#fff"
+                  underlineColorAndroid={'transparent'}
+                />
+              </View>
+              <TouchableOpacity
+                style={styles.SubmitButtonStyle}
+                activeOpacity={0.5}
+                onPress={handleSubmitPress}>
+                <Text style={styles.TextStyle}>LOG IN</Text>
+              </TouchableOpacity>
+              {/* <TouchableOpacity style={styles.buttoncontainer}
                         onPress={() => navigation.navigate('SecondStepSig')}>
                             <Text style={styles.headerbarButon}>Sign up</Text>
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
 
-                        {/*<TouchableOpacity style={styles.buttoncontainerForget}>*/}
-                        {/*    <Text style={styles.headerbarButonForgot}>Forget password ?</Text>*/}
-                        {/*</TouchableOpacity>*/}
+              {/*<TouchableOpacity style={styles.buttoncontainerForget}>*/}
+              {/*    <Text style={styles.headerbarButonForgot}>Forget password ?</Text>*/}
+              {/*</TouchableOpacity>*/}
 
+              <View style={styles.socialbottom}>
+                <TouchableOpacity style={styles.btnLeft}>
+                  <Image
+                    source={require('../img/facebook.png')}
+                    style={styles.img}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.btn}>
+                  <Image
+                    source={require('../img/twitter.png')}
+                    style={styles.img}
+                  />
+                </TouchableOpacity>
 
-                        <View style={styles.socialbottom}>
-                            <TouchableOpacity style={styles.btnLeft}>
+                <TouchableOpacity style={styles.btnRight}>
+                  <Image
+                    source={require('../img/google-plus.png')}
+                    style={styles.img}
+                  />
+                </TouchableOpacity>
+              </View>
 
-                                <Image source={require('../img/facebook.png')}  style={styles.img}/>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.btn}>
-
-                                <Image source={require('../img/twitter.png')}  style={styles.img}/>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={styles.btnRight}>
-
-                                <Image source={require('../img/google-plus.png')}  style={styles.img}/>
-                            </TouchableOpacity>
-                        </View>
-
-
-                        <View style={styles.bottom}>
-                            <TouchableOpacity style={styles.buttoncontainerSignIn}
-                                              onPress={() => navigation.navigate('Login')}>
-                                <Text style={styles.headerbarButonSignIn}>You have an account ? Login Now</Text>
-                            </TouchableOpacity>
-
-                        </View>
-                        </KeyboardAvoidingView>
-                    </ImageBackground>
-                </View>
-
-        </>
-    )
+              <View style={styles.bottom}>
+                <TouchableOpacity
+                  style={styles.buttoncontainerSignIn}
+                  onPress={() => navigation.navigate('Login')}>
+                  <Text style={styles.headerbarButonSignIn}>
+                    You have an account ? Login Now
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </KeyboardAvoidingView>
+          </ImageBackground>
+        </View>
+      </>
+    );
 }
 
 const styles = StyleSheet.create({

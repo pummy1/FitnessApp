@@ -35,10 +35,7 @@ import SideMenu from './SideMenu';
 import NotificationAlert from './NotificationAlert';
 
 //Navigation Drawer Structure for all screen
-<<<<<<< HEAD
 
-=======
->>>>>>> f527f1344a253a08e486fcb20278b2abe4ed503d
 class NavigationDrawerStructure extends Component {
     toggleDrawer = () => {
         this.props.navigationProps.toggleDrawer();
@@ -95,11 +92,7 @@ const Screen2_StackNavigator = createStackNavigator({
             ),
 
             headerStyle: {
-<<<<<<< HEAD
                 backgroundColor: '#f9a616',
-=======
-                backgroundColor: '#FF9800',
->>>>>>> f527f1344a253a08e486fcb20278b2abe4ed503d
             },
             headerTintColor: '#fff',
         }),

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import Contacts from './contacts';
+import Services from './config';
 
 export default class SettingsScreen extends React.Component {
   state = {
     contacts: []
   }
+  url = Services.apiConfig.baseUrl;
   componentDidMount() {
     fetch('http://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
@@ -33,21 +35,21 @@ export default class SettingsScreen extends React.Component {
 
   getDataUsingGet() {
     //GET request 
-    fetch('http://zanjo.io/projects/fitnessapp/get.php', {
-      method: 'GET'
-      //Request Type 
+    fetch(this.url + 'get.php', {
+      method: 'GET',
+      //Request Type
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       //If response is in json then in success
-      .then((responseJson) => {
-        //Success 
+      .then(responseJson => {
+        //Success
         // this.setState({ contacts: responseJson });
         alert(JSON.stringify(responseJson));
         console.log(responseJson);
       })
       //If response is not in json then in error
-      .catch((error) => {
-        //Error 
+      .catch(error => {
+        //Error
         alert(JSON.stringify(error));
         console.error(error);
       });
@@ -55,36 +57,28 @@ export default class SettingsScreen extends React.Component {
 
   getDataUsingPost() {
     //POST json 
-    var dataToSend = { mobile: '9770472208', email: 'zanjoio7@gamial.com' };
     let data = new FormData();
     data.append('mobile', '9770472208');
     data.append('email', 'zanjoio7@gamial.com');
 
-    //making data to send on server
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + ":" + encodedValue);
-    }
-    formBody = formBody.join("&");
     //POST request 
-    fetch('http://zanjo.io/projects/fitnessapp/signup_one_1.php', {
-      method: "POST",//Request Type 
-      body: data,//post body 
-      headers: {//Header Defination 
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
+    fetch(this.url + 'signup_one_1.php', {
+      method: 'POST', //Request Type
+      body: data, //post body
+      headers: {
+        //Header Defination
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
       },
     })
-      .then((response) => response.json())
+      .then(response => response.json())
       //If response is in json then in success
-      .then((responseJson) => {
+      .then(responseJson => {
         alert(JSON.stringify(responseJson));
         console.log(responseJson);
       })
       //If response is not in json then in error
-      .catch((error) => {
+      .catch(error => {
         alert(JSON.stringify(error));
         console.error(error);
       });
