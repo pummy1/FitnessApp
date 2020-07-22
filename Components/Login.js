@@ -22,11 +22,10 @@ import {
     Image,
     ImageBackground, TouchableOpacity,
 } from 'react-native';
-import axios from 'axios';
 const Login: () => React$Node = ({ navigation }) => {
     let [userEmail, setUserEmail] = useState('');
     let [userPassword, setUserPassword] = useState('');
-    const handleSubmitPress = () => {
+    const handleSubmitPressLogin = () => {
         if (!userEmail) {
             alert('Please fill Email');
             return;
@@ -35,62 +34,39 @@ const Login: () => React$Node = ({ navigation }) => {
             alert('Please fill Password');
             return;
         }
-        navigation.navigate('Homeredir');
-        // let formBody = new FormData();
-        // formBody.append('email', 'userEmail');
-        // formBody.append('password', 'userPassword');
-//         let dataToSend = { email: userEmail, password: userPassword };
-//         let formBody = [];
-//         for (let key in dataToSend) {
-//             let encodedKey = encodeURIComponent(key);
-//             let encodedValue = encodeURIComponent(dataToSend[key]);
-//             formBody.push(encodedKey + '=' + encodedValue);
-//         }
-//         formBody = formBody.join('&');
-// console.log(formBody);
-//         fetch(apiConfig.baseUrl+'login.php', {
-//             method: 'POST',
-//             // body: formBody,
-//             headers: {
-//                 //Header Defination
-//                 'Content-Type': 'multipart/form-data',
-//             },
-//             body: formBody,
-//         }).then(response => response.json())
-//             .then(responseJson => {
-//                 //Hide Loader
-//                 //setLoading(false);
-//                 console.log(responseJson);
-//                 if (responseJson.status == "true") {
+
+            if (userEmail != null && userPassword != null) {
+                let data = new FormData();
+                data.append('email', userEmail);
+                data.append('password', userPassword);
+
+                //POST request
+                fetch(apiConfig.baseUrl+ 'login.php',
+                    {
+                        method: 'POST', //Request Type
+                        body: data, //post body
+                        headers: {
+                            //Header Defination
+                            Accept: 'application/json',
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    },
+                )
+                    .then(response => response.json())
+                    //If response is in json then in success
+                    .then(responseJson => {
+                        alert(JSON.stringify(responseJson));
+                        // AsyncStorage.setItem('user_id', responseJson.data[0].id);
+                        navigation.navigate('Homeredir');
+                        console.log(responseJson);
+                    })
+                    //If response is not in json then in error
+                    .catch(error => {
+                        alert(JSON.stringify(error));
+                        console.error(error);
+                    });
+            }
 //                    // AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
-//                     //console.log(responseJson.data[0].id);
-//                     console.log("successfully");
-//                     navigation.navigate('HomeScreen');
-//                     // props.navigation.navigate('DrawerNavigationRoutes');
-//                 } else {
-//                     console.log('Please check your email id or password');
-//                 }
-//             })
-//             .catch(error => {
-//                 //Hide Loader
-//                 //setLoading(false);
-//                 console.error(error);
-//             });
-        axios.post(apiConfig.baseUrl+'login.php',{
-                email: 'balram.sahu@zanjo.io',
-                password: '12345'
-        })
-                .then((response) => {
-                    console.log(response);
-                    console.log(response.status);
-                    console.log("login");
-                    navigation.navigate('HomeScreen');
-
-                }, (error) => {
-                    console.log(error);
-                })
-
-
     };
     return (
         <>
@@ -133,13 +109,13 @@ const Login: () => React$Node = ({ navigation }) => {
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
                         activeOpacity={.5}
-                        onPress={handleSubmitPress}>
+                        onPress={handleSubmitPressLogin}>
                         <Text style={styles.TextStyle}> LOG IN </Text>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <TouchableOpacity style={styles.buttoncontainerSignIn}
-                                      onPress={() => navigation.navigate('Homeredir')}>
+                                      onPress={() => navigation.navigate('Forget')}>
                         <Text style = {styles.fd}>Forgot Password ?</Text>
                     </TouchableOpacity>
 

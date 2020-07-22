@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import {apiConfig} from './config';
 import React, { useState } from 'react';
 import {
     SafeAreaView,
@@ -33,11 +33,10 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button';
-import apiConfig from './config';
+
 
 const FirstStepSig: () => React$Node = ({ navigation }) => {
 
-    const url = apiConfig;
     let [Username, setUsername] = useState('');
     let [Userpassword, setUserpassword] = useState('');
     
@@ -56,8 +55,7 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
           data.append('password', Userpassword);
 
           //POST request
-          fetch(
-            'http://zanjo.io/projects/fitnessapp/signup_one_1.php',
+          fetch(apiConfig.baseUrl+ 'signup_one_1.php',
             {
               method: 'POST', //Request Type
               body: data, //post body
@@ -72,7 +70,7 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
             //If response is in json then in success
             .then(responseJson => {
               alert(JSON.stringify(responseJson));
-              navigation.navigate('Homeredir');
+              navigation.navigate('SecondStepSig');
               console.log(responseJson);
             })
             //If response is not in json then in error
