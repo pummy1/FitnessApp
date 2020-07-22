@@ -7,6 +7,7 @@
  */
 import {apiConfig} from './config';
 import React , { useState } from 'react';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
     SafeAreaView,
@@ -34,6 +35,7 @@ const Login: () => React$Node = ({ navigation }) => {
             alert('Please fill Password');
             return;
         }
+        navigation.navigate('Homeredir');
         // let formBody = new FormData();
         // formBody.append('email', 'userEmail');
         // formBody.append('password', 'userPassword');

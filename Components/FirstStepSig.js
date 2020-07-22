@@ -77,7 +77,8 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
                         </View>
 
 
-                        <TouchableOpacity style={styles.buttoncontainer}>
+                        <TouchableOpacity style={styles.buttoncontainer}
+                        onPress={() => navigation.navigate('SecondStepSig')}>
                             <Text style={styles.headerbarButon}>Sign up</Text>
                         </TouchableOpacity>
 

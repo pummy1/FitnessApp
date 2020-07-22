@@ -33,7 +33,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
-import Screen3 from './Screen3';
+import SecondStepSig from './SecondStepSig';
 import HomeScreen from './HomeScreen';
 import Forget from './Forget';
 import Login from './Login';
@@ -57,29 +57,32 @@ const App: () => React$Node = () => {
         <Stack.Navigator initialRouteName="Get" screenOptions={{
           headerShown: false
         }}>
-<Stack.Screen
-name="Get"
-component={First}
-/>
-<Stack.Screen
-name="Login"
-component={Login}
-/>
-<Stack.Screen
-name="FirstStepSig"
-component={FirstStepSig}
-/>
-<Stack.Screen
-name="HomeScreen"
-component={HomeScreen}
-/>
-<Stack.Screen name="Forget"
-component={Forget}
-/>
-<Stack.Screen
-name="Homeredir"
-component={Homeredir}
-/>
+              <Stack.Screen
+              name="Get"
+              component={First}
+              />
+              <Stack.Screen
+              name="Login"
+              component={Login}
+              />
+              <Stack.Screen
+              name="FirstStepSig"
+              component={FirstStepSig}
+              />
+              <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              />
+              <Stack.Screen name="Forget"
+              component={Forget}
+              />
+              <Stack.Screen
+              name="Homeredir"
+              component={Homeredir}
+              />
+              <Stack.Screen name="SecondStepSig"
+                            component={SecondStepSig}
+                            />
 
         </Stack.Navigator>
       </NavigationContainer>

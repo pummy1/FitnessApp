@@ -51,7 +51,7 @@ const First: () => React$Node = ({ navigation }) => {
                             style={styles.SubmitButtonStyle}
                             activeOpacity={.5}
                             //onPress={() => this.props.navigation.navigate('FirstStepSig')}
-                        onPress={() => navigation.navigate('Homeredir')}>
+                        onPress={() => navigation.navigate('FirstStepSig')}>
                             <Text style={styles.TextStyle}> GET STARTED  </Text>
                         </TouchableOpacity>
                     </View>
