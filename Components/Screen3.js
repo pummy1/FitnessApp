@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textstl: {
+
     fontFamily: 'Arial',
     color: '#fff',
     textAlign: 'center',

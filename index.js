@@ -3,10 +3,11 @@
  */
 
 import {AppRegistry} from 'react-native';
-import App from './Components/App';
+// import App from './Components/App';
 import First from './Components/First';
-import Home from './Components/Home';
+import Homeold from './Components/Homeold';
+import createAppContainer from './Components/App';
 
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(appName, () => createAppContainer);

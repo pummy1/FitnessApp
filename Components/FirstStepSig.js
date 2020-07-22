@@ -18,7 +18,11 @@ import {
     Button,
     Alert,
     Image,
-    ImageBackground, TouchableOpacity,
+    ImageBackground,
+    TouchableOpacity,
+    KeyboardAvoidingView ,
+    Keyboard ,
+    TouchableWithoutFeedback,
 } from 'react-native';
 // import { RadioButton } from 'react-native-paper';
 import {
@@ -29,7 +33,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button'
-const FirstStepSig: () => React$Node = () => {
+const FirstStepSig: () => React$Node = ({ navigation }) => {
 // export default class First extends React.Component {
    // const [checked, setChecked] = React.useState('first');
     return (
@@ -43,7 +47,10 @@ const FirstStepSig: () => React$Node = () => {
                         </Image>
                         <Text style={styles.header}>Signup to stay fit</Text>
                         <Text style={styles.headerbar}>Save Money With Club Membership Card</Text>
-
+                        <KeyboardAvoidingView
+                            behavior={Platform.OS == "android" ? "padding" : "height"}
+                            style={styles.container}
+                        >
 
                         <View style={styles.SectionStyleUsername}>
 
@@ -70,7 +77,8 @@ const FirstStepSig: () => React$Node = () => {
                         </View>
 
 
-                        <TouchableOpacity style={styles.buttoncontainer}>
+                        <TouchableOpacity style={styles.buttoncontainer}
+                        onPress={() => navigation.navigate('SecondStepSig')}>
                             <Text style={styles.headerbarButon}>Sign up</Text>
                         </TouchableOpacity>
 
@@ -97,12 +105,13 @@ const FirstStepSig: () => React$Node = () => {
 
 
                         <View style={styles.bottom}>
-                            <TouchableOpacity style={styles.buttoncontainerSignIn}>
+                            <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                              onPress={() => navigation.navigate('Login')}>
                                 <Text style={styles.headerbarButonSignIn}>You have an account ? Login Now</Text>
                             </TouchableOpacity>
 
                         </View>
-
+                        </KeyboardAvoidingView>
                     </ImageBackground>
                 </View>
 

@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textstl: {
+
     fontFamily: 'Arial',
     color: '#fff',
     textAlign: 'center',
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
   },
   headingstl: {
     fontWeight: 'bold',
+
     fontFamily: 'Open Sans',
     textAlign: 'center',
     paddingTop: 10,

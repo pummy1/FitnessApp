@@ -68,7 +68,9 @@ const TabScreen = createBottomTabNavigator(
               </TouchableOpacity>
             </View>
           );
-        } else if (routeName === 'Settings') {
+
+        }
+        else if (routeName === 'Settings') {
           return (
             <View>
               <TouchableOpacity>

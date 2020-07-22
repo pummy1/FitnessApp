@@ -5,9 +5,9 @@
  * @format
  * @flow strict-local
  */
-
 import React from 'react';
 import {
+
   SafeAreaView,
   StyleSheet,
   ScrollView,
@@ -27,15 +27,24 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import First from './First';
-import Login from './Login';
-import Homeredir from './Homeredir';
 import Screen1 from './Screen1';
+import Screen2 from './Screen2';
+import SecondStepSig from './SecondStepSig';
+import HomeScreen from './HomeScreen';
+import Forget from './Forget';
+import Login from './Login';
+import FirstStepSig from './FirstStepSig';
+const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import SideMenu from './SideMenu';
+import First from './First';
+import Homeredir from './Homeredir';
 const Stack = createStackNavigator();
 const App: () => React$Node = () => {
 
@@ -48,18 +57,32 @@ const App: () => React$Node = () => {
         <Stack.Navigator initialRouteName="Get" screenOptions={{
           headerShown: false
         }}>
-          <Stack.Screen
-            name="Get"
-            component={First}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-          />
-          <Stack.Screen
-            name="Homeredir"
-            component={Homeredir}
-          />
+              <Stack.Screen
+              name="Get"
+              component={First}
+              />
+              <Stack.Screen
+              name="Login"
+              component={Login}
+              />
+              <Stack.Screen
+              name="FirstStepSig"
+              component={FirstStepSig}
+              />
+              <Stack.Screen
+              name="HomeScreen"
+              component={HomeScreen}
+              />
+              <Stack.Screen name="Forget"
+              component={Forget}
+              />
+              <Stack.Screen
+              name="Homeredir"
+              component={Homeredir}
+              />
+              <Stack.Screen name="SecondStepSig"
+                            component={SecondStepSig}
+                            />
 
         </Stack.Navigator>
       </NavigationContainer>

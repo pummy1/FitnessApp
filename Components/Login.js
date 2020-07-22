@@ -5,8 +5,9 @@
  * @format
  * @flow strict-local
  */
-
+import {apiConfig} from './config';
 import React , { useState } from 'react';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
     SafeAreaView,
@@ -21,8 +22,8 @@ import {
     Image,
     ImageBackground, TouchableOpacity,
 } from 'react-native';
-
-const Login: () => props = () => {
+import axios from 'axios';
+const Login: () => React$Node = ({ navigation }) => {
     let [userEmail, setUserEmail] = useState('');
     let [userPassword, setUserPassword] = useState('');
     const handleSubmitPress = () => {
@@ -34,42 +35,62 @@ const Login: () => props = () => {
             alert('Please fill Password');
             return;
         }
-        let dataToSend = { user_email: userEmail, user_password: userPassword };
-        let formBody = [];
-        for (let key in dataToSend) {
-            let encodedKey = encodeURIComponent(key);
-            let encodedValue = encodeURIComponent(dataToSend[key]);
-            formBody.push(encodedKey + '=' + encodedValue);
-        }
-        formBody = formBody.join('&');
+        navigation.navigate('Homeredir');
+        // let formBody = new FormData();
+        // formBody.append('email', 'userEmail');
+        // formBody.append('password', 'userPassword');
+//         let dataToSend = { email: userEmail, password: userPassword };
+//         let formBody = [];
+//         for (let key in dataToSend) {
+//             let encodedKey = encodeURIComponent(key);
+//             let encodedValue = encodeURIComponent(dataToSend[key]);
+//             formBody.push(encodedKey + '=' + encodedValue);
+//         }
+//         formBody = formBody.join('&');
+// console.log(formBody);
+//         fetch(apiConfig.baseUrl+'login.php', {
+//             method: 'POST',
+//             // body: formBody,
+//             headers: {
+//                 //Header Defination
+//                 'Content-Type': 'multipart/form-data',
+//             },
+//             body: formBody,
+//         }).then(response => response.json())
+//             .then(responseJson => {
+//                 //Hide Loader
+//                 //setLoading(false);
+//                 console.log(responseJson);
+//                 if (responseJson.status == "true") {
+//                    // AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
+//                     //console.log(responseJson.data[0].id);
+//                     console.log("successfully");
+//                     navigation.navigate('HomeScreen');
+//                     // props.navigation.navigate('DrawerNavigationRoutes');
+//                 } else {
+//                     console.log('Please check your email id or password');
+//                 }
+//             })
+//             .catch(error => {
+//                 //Hide Loader
+//                 //setLoading(false);
+//                 console.error(error);
+//             });
+        axios.post(apiConfig.baseUrl+'login.php',{
+                email: 'balram.sahu@zanjo.io',
+                password: '12345'
+        })
+                .then((response) => {
+                    console.log(response);
+                    console.log(response.status);
+                    console.log("login");
+                    navigation.navigate('HomeScreen');
 
-        fetch('https://aboutreact.herokuapp.com/login.php', {
-            method: 'POST',
-            body: formBody,
-            headers: {
-                //Header Defination
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-            },
-        }).then(response => response.json())
-            .then(responseJson => {
-                //Hide Loader
-                //setLoading(false);
-                console.log(responseJson);
-                // If server response message same as Data Matched
-                if (responseJson.status == 1) {
-                    AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
-                    console.log(responseJson.data[0].user_id);
-                    props.navigation.navigate('DrawerNavigationRoutes');
-                } else {
-                   // setErrortext('Please check your email id or password');
-                    console.log('Please check your email id or password');
-                }
-            })
-            .catch(error => {
-                //Hide Loader
-                //setLoading(false);
-                console.error(error);
-            });
+                }, (error) => {
+                    console.log(error);
+                })
+
+
     };
     return (
         <>
@@ -117,10 +138,18 @@ const Login: () => props = () => {
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text style = {styles.fd}>Forgot Password ?</Text>
+                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                      onPress={() => navigation.navigate('Homeredir')}>
+                        <Text style = {styles.fd}>Forgot Password ?</Text>
+                    </TouchableOpacity>
+
                 </View>
                 <View>
-                    <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
+                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                                      onPress={() => navigation.navigate('FirstStepSig')}>
+                        <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
+                    </TouchableOpacity>
+
                 </View>
             </ImageBackground>
         </>

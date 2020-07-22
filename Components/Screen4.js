@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     marginVertical: 1,
   },
   textstl: {
+
     fontFamily: 'Arial',
     color: '#ffffff',
     textAlign: 'center',
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
   },
   headingstl: {
     fontWeight: 'bold',
+
     fontFamily: 'Open Sans',
     backgroundColor: '#2e3337',
     color: '#b0b0b0',

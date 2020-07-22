@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -108,7 +109,6 @@ export default class SideMenu extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    
     flex: 1,
   },
   sideMenuContainer: {
@@ -134,4 +134,3 @@ const styles = StyleSheet.create({
     fontSize:20,
   },
 });
-// qwerty
