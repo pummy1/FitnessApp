@@ -14,7 +14,7 @@ import { ImageBackground, StyleSheet, Text, View,Button, Image, TextInput, Touch
 
 
 const image = { };
-const SecondStepSig: () => React$Node = () =>
+const SecondStepSig: () => React$Node = ({navigation}) =>
 {
 
     let [Fname, setFname] = useState('');
@@ -22,7 +22,7 @@ const SecondStepSig: () => React$Node = () =>
     let [Dob, setDob] = useState('');
     let [Mob, setMob] = useState('');
     let [Gen, setGen] = useState('');
-    
+
     const handleSubmitPress = () => {
         if (!Fname) {
             alert('Please fill first name');
@@ -48,9 +48,9 @@ const SecondStepSig: () => React$Node = () =>
           let data = new FormData();
           data.append('first_name', Fname);
           data.append('last_name', Lname);
-          data.append('dob', Fname);
-          data.append('mobile', Lname);
-          data.append('gender', Fname);
+          data.append('dob', Dob);
+          data.append('mobile', Mob);
+          data.append('gender', Gen);
             
 
           //POST request
@@ -87,10 +87,6 @@ const SecondStepSig: () => React$Node = () =>
         }
         
     }
-
-
-
-
 
     const [isSelected, setSelection] = useState(false);
 
