@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -28,9 +28,52 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button'
-const Forget: () => React$Node = () => {
+import {apiConfig} from './config';
+import AsyncStorage from '@react-native-community/async-storage';
+const Forget: () => React$Node = ({navigation}) => {
 // export default class First extends React.Component {
+    let [userEmail, setUserEmail] = useState('');
+    const handleSubmitPressforget = async () => {
+        // const handleSubmitPressLogin = () => {
+        if (!userEmail) {
+            alert('Please fill Email');
+            return;
+        }
 
+        if (userEmail != null) {
+            let data = new FormData();
+            data.append('email', userEmail);
+
+            //POST request
+            fetch(apiConfig.baseUrl+ 'forget_pass.php',
+                {
+                    method: 'POST', //Request Type
+                    body: data, //post body
+                    headers: {
+                        //Header Defination
+                        Accept: 'application/json',
+                        'Content-Type': 'multipart/form-data',
+                    },
+                },
+            )
+                .then(response => response.json())
+                .then(responseJson => {
+                    if(responseJson.status=="true"){
+                        alert('Plz check mail for password');
+                            navigation.navigate('login');
+                    }
+                    else{
+                        navigation.navigate('Forget');
+                        alert('Something went to Wrong');
+                    }
+                })
+                //If response is not in json then in error
+                .catch(error => {
+                    alert(JSON.stringify(error));
+                    console.error(error);
+                });
+        }
+    };
     return (
         <>
             <StatusBar barStyle="default"/>
@@ -50,12 +93,14 @@ const Forget: () => React$Node = () => {
                                placeholder = "@Email"
                                placeholderTextColor = "#fff"
                                autoCapitalize = "none"
+                               onChangeText={UserEmail => setUserEmail(UserEmail)}
                     />
                 </View>
                 <View>
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
-                        activeOpacity={.5}>
+                        activeOpacity={.5}
+                        onPress={handleSubmitPressforget}>
                         <Text style={styles.TextStyle}> SUBMIT </Text>
                     </TouchableOpacity>
                 </View>

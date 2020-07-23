@@ -38,6 +38,8 @@ import HomeScreen from './HomeScreen';
 import Forget from './Forget';
 import Login from './Login';
 import FirstStepSig from './FirstStepSig';
+import ThirdStepSig from './ThirdStepSig';
+import Terms from './Terms';
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 import 'react-native-gesture-handler';
@@ -83,6 +85,12 @@ const App: () => React$Node = () => {
               <Stack.Screen name="SecondStepSig"
                             component={SecondStepSig}
                             />
+            <Stack.Screen name="ThirdStepSig"
+                          component={ThirdStepSig}
+            />
+            <Stack.Screen name="Terms"
+                          component={Terms}
+            />
 
         </Stack.Navigator>
       </NavigationContainer>

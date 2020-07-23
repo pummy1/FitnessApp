@@ -1,4 +1,11 @@
-import React from 'react';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,10 +26,87 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import FlipToggle from 'react-native-flip-toggle-button'
-const  ThirdStepSig: () => React$Node = () => {
-// export default class First extends React.Component {
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
+import FlipToggle from 'react-native-flip-toggle-button'
+import {apiConfig} from './config';
+const  ThirdStepSig: () => React$Node = ({ navigation }) => {
+// export default class First extends React.Component {
+  let [Weight, setWeight] = useState('');
+  let [Height, setHeight] = useState('');
+  let [Address, setAddress] = useState('');
+  let [Country, setCountry] = useState('');
+  let [Pincode, setPincode] = useState('');
+  let [State, setState] = useState('');
+
+  const handleSubmitPressSetpThree = () => {
+    if (!Weight) {
+      alert('Please fill Weight');
+      return;
+    }
+    if (!Height) {
+      alert('Please fill Height');
+      return;
+    }
+    if(Address){
+      alert('please fill Address');
+      return;
+    }
+    if(Country){
+      alert('please fill Country');
+      return;
+    }
+    if(Pincode){
+      alert('please fill Pincode');
+      return;
+    }
+    if(State){
+      alert('please fill State');
+      return;
+    }
+    if (Height != null && Weight != null && Address != null && Country != null && Pincode != null && State != null) {
+      let data = new FormData();
+      data.append('user_id', 4);
+      data.append('weight', Weight);
+      data.append('height', Height);
+      data.append('address', Address);
+      data.append('country', Country);
+      data.append('pin_code', Pincode);
+      data.append('state', State);
+
+      //POST request
+      fetch(apiConfig.baseUrl+ 'signup_three_3.php',
+          {
+            method: 'POST', //Request Type
+            body: data, //post body
+            headers: {
+              //Header Defination
+              Accept: 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+      )
+          .then(response => response.json())
+          //If response is in json then in success
+          .then(responseJson => {
+            if(responseJson.status=="true"){
+              navigation.navigate('Terms');
+            }
+            else{
+              navigation.navigate('ThirdStepSig');
+              alert('Something Went Wrong');
+            }
+
+            console.log(responseJson);
+          })
+          //If response is not in json then in error
+          .catch(error => {
+            alert(JSON.stringify(error));
+            console.error(error);
+          });
+    }
+
+  }
   return (
       <>
         <StatusBar barStyle="default"/>
@@ -31,6 +115,7 @@ const  ThirdStepSig: () => React$Node = () => {
             style={{
               flex: 1,
             }}>
+          <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
 
           <Image source={require('../img/fit-logo-Recovered.png')}
                  style={styles.logo}>
@@ -42,6 +127,7 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "WEIGHT"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={Weight => setWeight(Weight)}
             />
           </View>
           <View style = {styles.inputContainer2}>
@@ -50,6 +136,7 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "HEIGHT"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={Height => setHeight(Height)}
             />
           </View>
           <View style = {styles.inputContainer2}>
@@ -58,6 +145,7 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "ADDRESS"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={Address => setAddress(Address)}
             />
           </View>
             <View style = {styles.inputContainer2}>
@@ -66,6 +154,7 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "COUNTRY"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={Country => setCountry(Country)}
             />
             </View>
             <View style = {styles.inputContainer2}>
@@ -74,6 +163,7 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "PIN CODE"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={Pincode => setPincode(Pincode)}
             />
             </View>
             <View style = {styles.inputContainer2}>
@@ -82,15 +172,20 @@ const  ThirdStepSig: () => React$Node = () => {
                        placeholder = "STATE"
                        placeholderTextColor = "#fff"
                        autoCapitalize = "none"
+                       onChangeText={State => setState(State)}
             />
           </View>
             <View>
             <TouchableOpacity
                 style={styles.SubmitButtonStyle}
-                activeOpacity={.5}>
-              <Text style={styles.TextStyle}> SUBMIT </Text>
+                activeOpacity={.5}
+                onPress={handleSubmitPressSetpThree}>
+              <Image source={require('../img/arrow1.png')}  style={styles.TextStyle}/>
             </TouchableOpacity>
-          </View>
+            </View>
+
+          </KeyboardAwareScrollView>
+
         </ImageBackground>
       </>
   )
@@ -108,18 +203,20 @@ const styles = StyleSheet.create({
     marginTop:50,
     paddingTop:15,
     paddingBottom:15,
-    marginLeft:40,
-    marginRight:40,
-    backgroundColor:'#F9A717',
-    borderRadius:50,
-    borderWidth: 1,
-    borderColor: '#F9A717'
+    // marginLeft:40,
+    // marginRight:40,
+    alignSelf: 'center',
   },
   TextStyle:{
-    color:'#fff',
-    textAlign:'center',
-    fontWeight:'bold',
-    fontSize:17
+    // textAlign:'center',
+    // fontWeight:'bold',
+    // fontSize:17
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    height : 50,
+    width:50,
+    alignSelf: 'center',
   },
   logo:{
     marginLeft: 108,
@@ -154,6 +251,33 @@ const styles = StyleSheet.create({
     marginTop:10,
     marginLeft:15
   },
+  Bottomimg: {
+    flex: 1,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    height : 50,
+    width:50,
+    // marginTop:40
+  },
+  Bottombtn: {
+    flex: 1,
+    height:36,
+    width:36,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    marginTop:30
+  },
+  bottom: {
+    flex: 1,
+    alignSelf: 'center',
+    position: 'absolute',
+    // bottom: 0,
+    // marginTop:1000
+  },
 
 });
-// export default ThirdStepSig;
+export default ThirdStepSig;

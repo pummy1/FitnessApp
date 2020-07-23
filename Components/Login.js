@@ -25,7 +25,8 @@ import {
 const Login: () => React$Node = ({ navigation }) => {
     let [userEmail, setUserEmail] = useState('');
     let [userPassword, setUserPassword] = useState('');
-    const handleSubmitPressLogin = () => {
+    const handleSubmitPressLogin = async () => {
+    // const handleSubmitPressLogin = () => {
         if (!userEmail) {
             alert('Please fill Email');
             return;
@@ -54,10 +55,17 @@ const Login: () => React$Node = ({ navigation }) => {
                 )
                     .then(response => response.json())
                     .then(responseJson => {
-                        alert(JSON.stringify("id"+responseJson.data['id']));
-                        AsyncStorage.setItem('user_id', responseJson.data['id']);
+
+                        // alert(JSON.stringify("id"+responseJson.data['id']));
+                        // AsyncStorage.setItem(STORAGE_KEY, 'pummy');
                         if(responseJson.status=="true"){
-                            navigation.navigate('Homeredir');
+                            try {
+                                AsyncStorage.setItem('id', responseJson.data['id'])
+                                alert('Data successfully saved');
+                                navigation.navigate('Homeredir');
+                            } catch (e) {
+                                alert('Failed to save the data to the storage')
+                            }
                             // console.log(AsyncStorage.getItem('user_id'));
 
                         }
@@ -105,6 +113,7 @@ const Login: () => React$Node = ({ navigation }) => {
                 </View>
                 <View style = {styles.inputContainer2}>
                     <TextInput style = {styles.input}
+                               secureTextEntry={true}
                                underlineColorAndroid = "transparent"
                                placeholder = "PASSWORD"
                                placeholderTextColor = "#fff"

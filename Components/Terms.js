@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -21,6 +21,7 @@ import {
     ImageBackground, TouchableOpacity,
 
 } from 'react-native';
+import RadioButton from '../Components/RadioButton';
 // import { RadioButton } from 'react-native-paper';
 import {
     Header,
@@ -30,9 +31,28 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button'
-const Terms: () => React$Node = () => {
+const Terms: () => React$Node = ({navigation}) => {
 // export default class First extends React.Component {
     // const [checked, setChecked] = React.useState('first');
+    const [terms, settermscondition] = useState(true);
+    const [gettc, setTerms] = useState('false');
+    const termsRadioHandler = () => {
+        if(terms){
+            settermscondition(true);
+            setTerms('true');
+        }
+        console.log(gettc);
+    }
+    const handleSubmitPressterms = async () => {
+        if(gettc == true){
+            navigation.navigate('Login');
+        }
+        else{
+            alert('Please check Checkbox');
+            navigation.navigate('Terms');
+        }
+
+    }
     return (
         <>
             <StatusBar barStyle="default"/>
@@ -49,6 +69,12 @@ const Terms: () => React$Node = () => {
                     <Text style = {styles.text}>Terms And Conditions</Text>
 
                 </View>
+                <View style = {styles.checkbox}>
+                    <RadioButton checked={terms} onPress={termsRadioHandler} />
+                    <View>
+                        <Text style = {styles.termscondition}>I confirm that</Text>
+                    </View>
+                </View>
 
                 <View>
                     <Text style = {styles.loginsubtext}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</Text>
@@ -60,7 +86,8 @@ const Terms: () => React$Node = () => {
                 <View>
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
-                        activeOpacity={.5}>
+                        activeOpacity={.5}
+                        onPress={handleSubmitPressterms}>
                         <Text style={styles.TextStyle}> ACCEPT </Text>
                     </TouchableOpacity>
                 </View>
@@ -114,8 +141,15 @@ const styles = StyleSheet.create({
         color:'#fff',
         marginLeft:30,
         fontSize:15,
-        marginTop:90,
+        marginTop:40,
         alignItems:'flex-start'
+    },
+    checkbox:{
+        color:'#fff',
+        marginLeft:20,
+        fontSize:15,
+        marginTop:40,
+        // marginRight: 10
     },
     signin:{
         color:'#fff',
@@ -124,6 +158,13 @@ const styles = StyleSheet.create({
         marginTop:30,
         alignItems:'flex-start'
     },
+    termscondition:{
+        color:'#fff',
+        marginLeft:50,
+        fontSize:15,
+        marginTop:-20,
+        alignItems:'flex-start'
+    }
 
 
 });

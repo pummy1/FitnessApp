@@ -14,9 +14,11 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 // import all basic components
 
 export default class Screen2 extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +26,23 @@ export default class Screen2 extends Component {
     };
   }
 
+
+
+  // const
+  //
+  // readData = async () =>
+  // {
+  //   try {
+  //
+  //     const userAge = await AsyncStorage.getItem('id');
+  //
+  //     if (userAge !== null) {
+  //       alert(userAge);
+  //     }
+  //   } catch (e) {
+  //     alert('Failed to fetch the data from storage')
+  //   }
+  // }
   render() {
     //width of child is 110
     const width = `${100 / parseInt(this.state.width / 110)}%`;

@@ -50,9 +50,9 @@ const First: () => React$Node = ({ navigation }) => {
                         <TouchableOpacity
                             style={styles.SubmitButtonStyle}
                             activeOpacity={.5}
-                            //onPress={() => this.props.navigation.navigate('FirstStepSig')}
+
                             onPress={() => navigation.navigate('Login')}
-                            // onPress={() => navigation.navigate('SecondStepSig')}
+                            // onPress={() => navigation.navigate('Terms')}
                         >
                             <Text style={styles.TextStyle}> GET STARTED  </Text>
                         </TouchableOpacity>

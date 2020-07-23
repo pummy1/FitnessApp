@@ -133,6 +133,7 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
 
                 <TextInput
                   style={styles.textinput}
+                  secureTextEntry={true}
                   placeholder="Password"
                   onChangeText={Userpassword =>
                     setUserpassword(Userpassword)
