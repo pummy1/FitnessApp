@@ -33,6 +33,7 @@ import {
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 
 const FirstStepSig: () => React$Node = ({ navigation }) => {
@@ -69,8 +70,15 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
             .then(response => response.json())
             //If response is in json then in success
             .then(responseJson => {
-              alert(JSON.stringify(responseJson));
-              navigation.navigate('SecondStepSig');
+                if(responseJson.status=="true"){
+                    navigation.navigate('SecondStepSig');
+
+                }
+                else{
+                    navigation.navigate('FirstStepSig');
+                    alert('Something Went Wrong');
+                }
+
               console.log(responseJson);
             })
             //If response is not in json then in error
@@ -148,10 +156,10 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
                 />
               </View>
               <TouchableOpacity
-                style={styles.SubmitButtonStyle}
+                style={styles.buttoncontainer}
                 activeOpacity={0.5}
                 onPress={handleSubmitPress}>
-                <Text style={styles.TextStyle}>LOG IN</Text>
+                <Text style={styles.headerbarButon}>Sign up</Text>
               </TouchableOpacity>
               {/* <TouchableOpacity style={styles.buttoncontainer}
                         onPress={() => navigation.navigate('SecondStepSig')}>
@@ -162,27 +170,27 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
               {/*    <Text style={styles.headerbarButonForgot}>Forget password ?</Text>*/}
               {/*</TouchableOpacity>*/}
 
-              <View style={styles.socialbottom}>
-                <TouchableOpacity style={styles.btnLeft}>
-                  <Image
-                    source={require('../img/facebook.png')}
-                    style={styles.img}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btn}>
-                  <Image
-                    source={require('../img/twitter.png')}
-                    style={styles.img}
-                  />
-                </TouchableOpacity>
+              {/*<View style={styles.socialbottom}>*/}
+              {/*  <TouchableOpacity style={styles.btnLeft}>*/}
+              {/*    <Image*/}
+              {/*      source={require('../img/facebook.png')}*/}
+              {/*      style={styles.img}*/}
+              {/*    />*/}
+              {/*  </TouchableOpacity>*/}
+              {/*  <TouchableOpacity style={styles.btn}>*/}
+              {/*    <Image*/}
+              {/*      source={require('../img/twitter.png')}*/}
+              {/*      style={styles.img}*/}
+              {/*    />*/}
+              {/*  </TouchableOpacity>*/}
 
-                <TouchableOpacity style={styles.btnRight}>
-                  <Image
-                    source={require('../img/google-plus.png')}
-                    style={styles.img}
-                  />
-                </TouchableOpacity>
-              </View>
+              {/*  <TouchableOpacity style={styles.btnRight}>*/}
+              {/*    <Image*/}
+              {/*      source={require('../img/google-plus.png')}*/}
+              {/*      style={styles.img}*/}
+              {/*    />*/}
+              {/*  </TouchableOpacity>*/}
+              {/*</View>*/}
 
               <View style={styles.bottom}>
                 <TouchableOpacity
@@ -193,7 +201,7 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
                   </Text>
                 </TouchableOpacity>
               </View>
-            </KeyboardAvoidingView>
+                            </KeyboardAvoidingView>
           </ImageBackground>
         </View>
       </>
@@ -350,7 +358,7 @@ const styles = StyleSheet.create({
         marginBottom: 0,
     },
     headerbarButonSignIn : {
-        fontSize : 13,
+        fontSize : 15,
         color : '#fff',
         alignSelf: 'center',
 
@@ -435,5 +443,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: -50
     },
+
+
+
 });
 export default FirstStepSig;

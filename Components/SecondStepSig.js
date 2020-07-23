@@ -5,101 +5,102 @@
  * @format
  * @flow strict-local
  */
-import React from "react";
+import React , { useState } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ImageBackground,
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity
-  } from "react-native";
-import DatePicker from 'react-native-datepicker';
+import RadioButton from '../Components/RadioButton';
+import FloatLabelTextInput from 'react-native-floating-label-text-input';
+import { ImageBackground, StyleSheet, Text, View,Button, Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard , TouchableWithoutFeedback, CheckBox  } from "react-native";
+
 
 const image = { };
 const SecondStepSig: () => React$Node = () =>
-    {
+{
+    const [isSelected, setSelection] = useState(false);
 
-        return (
-            <View style={styles.container}>
+    const [isSelected2, setSelection2] = useState(false);
 
-                <ImageBackground  source={require('../img/1.jpg')} style={styles.image}>
+    const [gender, setGender] = useState('male');
+    const [femaleCheck, setFemaleCheck] = useState(false);
+    const [maleCheck, setMaleCheck] = useState(true);
 
-                    <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
+    const maleRadioHandler = () => {
+        if(femaleCheck){
+            setFemaleCheck(false);
+            setMaleCheck(true);
+            setGender('male');
+        } else {
+            setMaleCheck(true);
+            setGender('male');
+        }
+    }
 
-                        <Image
-                            style={styles.tinyLogo}
-                            source={require('../img/fit-logo-Recovered.png')}
-                        />
+    const femaleRadioHandler = () => {
+        if(maleCheck){
+            setMaleCheck(false);
+            setFemaleCheck(true);
+            setGender('female');
+        } else {
+            setFemaleCheck(true);
+            setGender('female');
+        }
+    }
 
-                        <View style={styles.SectionStyleUsername}>
-                            <TextInput  style={styles.textinput} placeholder="Firstname" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                        </View>
-                        <View style={styles.SectionStyle}>
-                            <TextInput  style={styles.textinput} placeholder="Lastname" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                        </View>
+    const onPressHandler = async() => {
+        console.log(gender);
+    }
+    return (
+        <View style={styles.container}>
 
-                        {/*<View style={styles.SectionStyle}>*/}
-                        {/*    <TextInput  style={styles.textinput} placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />*/}
-                        {/*</View>*/}
-                        <View style={styles.SectionStyle}>
-                            <TextInput  style={styles.textinput} placeholder="Gender" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                            <View style={styles.socialbottom}>
-                                <View style={styles.socialbottomMaleView}>
-                                    <TouchableOpacity style={styles.btnLeft}>
-                                        <Image source={require('../img/Rounded.png')}  style={styles.img}/>
-                                    </TouchableOpacity>
-                                    <Text style={styles.header}>Male</Text>
-                                </View>
-                                <View style={styles.socialbottomFemaleView}>
-                                    <TouchableOpacity style={styles.btn}>
-                                        <Image source={require('../img/Rounded.png')}  style={styles.img}/>
-                                    </TouchableOpacity>
+            <ImageBackground  source={require('../img/1.jpg')} style={styles.image}>
 
-                                    <Text style={styles.headertwo}>Female</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View style={styles.SectionStyle}>
-                            <DatePicker
-                                style={{width: 200}}
-                                date={"2016-05-15"}
-                                mode="date"
-                                format="YYYY-MM-DD"
-                                minDate="2016-05-01"
-                                maxDate="2016-06-01"
-                                confirmBtnText="Confirm"
-                                cancelBtnText="Cancel"
-                                placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'}
-                                customStyles={{
-                                    dateIcon: {
-                                        position: 'absolute',
-                                        left: 0,
-                                        top: 4,
-                                        marginLeft: 0
-                                    },
-                                    dateInput: {
-                                        marginLeft: 36
-                                    }
-                                    // ... You can check the source to find the other keys.
-                                }}
-                                // onDateChange={(date) => {this.setState({date: date})}}
-                            />
-                        </View>
-                        <View style={styles.SectionStyle}>
-                            <TextInput  style={styles.textinput} placeholder="Mobile No." placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                        </View>
-                    </KeyboardAwareScrollView>
-                    <View style={styles.bottom}>
-                        <TouchableOpacity style={styles.Bottombtn} >
-                            <Image source={require('../img/arrow1.png')}  style={styles.Bottomimg}/>
-                        </TouchableOpacity>
+                <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
+
+                    <Image
+                        style={styles.tinyLogo}
+                        source={require('../img/fit-logo-Recovered.png')}
+                    />
+
+
+                    <View style={styles.SectionStyleUsername}>
+                        <TextInput  style={styles.textinput} placeholder="FIRSTNAME" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
                     </View>
-                </ImageBackground>
+                    <View style={styles.SectionStyle}>
+                        <TextInput  style={styles.textinput} placeholder="LASTNAME" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
+                    </View>
+                    <View style={styles.SectionStyle}>
 
-            </View>
-        );
+                        <TextInput  style={styles.textinput} placeholder="DATE OF BIRTH" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
+                    </View>
+                    {/*<View style={styles.SectionStyle}>*/}
+                    {/*    <TextInput  style={styles.textinput} placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />*/}
+                    {/*</View>*/}
+
+                    <View style={styles.SectionStyle}>
+                        <TextInput  style={styles.textinput} placeholder="Mobile No." placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
+                    </View>
+                    <View style={{...styles.blockContainer, alignItems: 'center', flexDirection: 'row', marginHorizontal: 15, paddingHorizontal: 10, backgroundColor:'#00000000'}}>
+                        {/*<View style={styles.blockContainer}>*/}
+                        <View style={styles.headingContainer}>
+                            <Text style={styles.headingText}>Gender :
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={{...styles.blockContainerCheckbox, alignItems: 'center', flexDirection: 'row', marginHorizontal: 15, paddingHorizontal: 10, backgroundColor:'#00000000'}}>
+                        <Text style={styles.radioText}>Male: </Text>
+                        <RadioButton  onPress={maleRadioHandler} checked={maleCheck} />
+                        <Text style={styles.radioText}>   Female: </Text>
+                        <RadioButton checked={femaleCheck} onPress={femaleRadioHandler} />
+                    </View>
+                </KeyboardAwareScrollView>
+                <View style={styles.bottom}>
+                    <TouchableOpacity style={styles.Bottombtn} >
+                        <Image source={require('../img/arrow1.png')}  style={styles.Bottomimg}/>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
+
+        </View>
+    );
 }
 const styles = StyleSheet.create({
     container: {
@@ -171,6 +172,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#f8f8f8',
         borderBottomWidth : 1,
         marginTop: 20,
+        borderWidth: 0
 
     },
     buttoncontainer : {
@@ -199,11 +201,13 @@ const styles = StyleSheet.create({
     SectionStyleUsername: {
         flexDirection: 'row',
         width : 350,
-        backgroundColor: '#00000000',
-        borderColor: '#00000000',
+        // backgroundColor: '#00000000',
+        // borderColor: '#00000000',
         height: 40,
         alignSelf:'center',
-        marginTop: 70,
+        marginTop: 50,
+
+
         margin: 10,
     },
     SectionStyle: {
@@ -263,9 +267,9 @@ const styles = StyleSheet.create({
         {
             flex: 1,
             backgroundColor : '#00000000',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
     ImageClass:
         {
             // Setting up image width.
@@ -399,6 +403,72 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 50
     },
+    blockContainer: {
+        backgroundColor: '#000',
+        width: '97%',
+        marginLeft: 60,
+        elevation: 3,
+        borderRadius: 10,
+        marginVertical: 5,
+        marginHorizontal: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+        marginTop:10,
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    blockContainerCheckbox: {
+        backgroundColor: '#000',
+        width: '97%',
+        marginLeft: 60,
+        elevation: 3,
+        borderRadius: 10,
+        marginVertical: 5,
+        marginHorizontal: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+        marginTop:0,
+        alignItems: 'center', flexDirection: 'row',
 
+    },
+    headingText: {
+        fontSize: 18,
+        fontWeight: '400',
+        color:'white',
+    },
+    textContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginLeft: 10
+    },
+    headingContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    // text: {
+    //     fontSize: 18,
+    //
+    // },
+    radioText: {
+        marginHorizontal: 5,
+        fontSize: 15,
+        color:'white',
+    },
+    containernew: {
+        flex: 1,
+        paddingTop: 65,
+    },
+    labelInput: {
+        color: '#673AB7',
+    },
+    formInput: {
+        borderBottomWidth: 1.5,
+        marginLeft: 20,
+        borderColor: '#333',
+    },
+    input: {
+        borderWidth: 0
+    }
 });
+
 export default SecondStepSig;

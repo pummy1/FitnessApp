@@ -53,12 +53,19 @@ const Login: () => React$Node = ({ navigation }) => {
                     },
                 )
                     .then(response => response.json())
-                    //If response is in json then in success
                     .then(responseJson => {
-                        alert(JSON.stringify(responseJson));
-                        // AsyncStorage.setItem('user_id', responseJson.data[0].id);
-                        navigation.navigate('Homeredir');
-                        console.log(responseJson);
+                        alert(JSON.stringify("id"+responseJson.data['id']));
+                        AsyncStorage.setItem('user_id', responseJson.data['id']);
+                        if(responseJson.status=="true"){
+                            navigation.navigate('Homeredir');
+                            // console.log(AsyncStorage.getItem('user_id'));
+
+                        }
+                        else{
+                            navigation.navigate('Login');
+                            alert('Email and Password not matched');
+                        }
+
                     })
                     //If response is not in json then in error
                     .catch(error => {
@@ -76,7 +83,7 @@ const Login: () => React$Node = ({ navigation }) => {
                 style={{
                     flex: 1,
                 }}>
-
+                <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
                 <Image source={require('../img/fit-logo-Recovered.png')}
                        style={styles.logo}>
                 </Image>
@@ -105,6 +112,7 @@ const Login: () => React$Node = ({ navigation }) => {
                                onChangeText={UserPassword => setUserPassword(UserPassword)}
                     />
                 </View>
+
                 <View>
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
@@ -113,20 +121,22 @@ const Login: () => React$Node = ({ navigation }) => {
                         <Text style={styles.TextStyle}> LOG IN </Text>
                     </TouchableOpacity>
                 </View>
+
                 <View>
-                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                    <TouchableOpacity
                                       onPress={() => navigation.navigate('Forget')}>
                         <Text style = {styles.fd}>Forgot Password ?</Text>
                     </TouchableOpacity>
 
                 </View>
-                <View>
-                    <TouchableOpacity style={styles.buttoncontainerSignIn}
+                <View style={styles.buttoncontainerSignIn}>
+                    <TouchableOpacity
                                       onPress={() => navigation.navigate('FirstStepSig')}>
                         <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
                     </TouchableOpacity>
 
                 </View>
+                </KeyboardAwareScrollView>
             </ImageBackground>
         </>
     )
@@ -214,6 +224,9 @@ const styles = StyleSheet.create({
         marginLeft:142,
         fontSize:15,
         marginTop:10
+    },
+    buttoncontainerSignIn:{
+        marginBottom:20
     }
 
 });
