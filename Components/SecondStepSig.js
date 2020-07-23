@@ -5,6 +5,7 @@
  * @format
  * @flow strict-local
  */
+import {apiConfig} from './config';
 import React , { useState } from "react";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RadioButton from '../Components/RadioButton';
@@ -15,6 +16,82 @@ import { ImageBackground, StyleSheet, Text, View,Button, Image, TextInput, Touch
 const image = { };
 const SecondStepSig: () => React$Node = () =>
 {
+
+    let [Fname, setFname] = useState('');
+    let [Lname, setLname] = useState('');
+    let [Dob, setDob] = useState('');
+    let [Mob, setMob] = useState('');
+    let [Gen, setGen] = useState('');
+    
+    const handleSubmitPress = () => {
+        if (!Fname) {
+            alert('Please fill first name');
+            return;
+        }
+        if (!Lname) {
+          alert('Please fill last name');
+          return;
+        }
+        if (!Dob) {
+          alert('Please fill DOB');
+          return;
+        }
+        if (!Mob) {
+          alert('Please fill mobile');
+          return;
+        }
+        if (!Gen) {
+          alert('Please fill gender');
+          return;
+        }
+        if (Fname != null && Lname != null && Dob != null && Mob != null && Gen != null) {
+          let data = new FormData();
+          data.append('first_name', Fname);
+          data.append('last_name', Lname);
+          data.append('dob', Fname);
+          data.append('mobile', Lname);
+          data.append('gender', Fname);
+            
+
+          //POST request
+          fetch(apiConfig.baseUrl+ 'signup_two_2.php',
+            {
+              method: 'POST', //Request Type
+              body: data, //post body
+              headers: {
+                //Header Defination
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+              },
+            },
+          )
+            .then(response => response.json())
+            //If response is in json then in success
+            .then(responseJson => {
+                if(responseJson.status=="true"){
+                    navigation.navigate('ThirdStepSig');
+
+                }
+                else{
+                    navigation.navigate('SecondStepSig');
+                    alert('Something Went Wrong');
+                }
+
+              console.log(responseJson);
+            })
+            //If response is not in json then in error
+            .catch(error => {
+              alert(JSON.stringify(error));
+              console.error(error);
+            });
+        }
+        
+    }
+
+
+
+
+
     const [isSelected, setSelection] = useState(false);
 
     const [isSelected2, setSelection2] = useState(false);
@@ -49,57 +126,108 @@ const SecondStepSig: () => React$Node = () =>
         console.log(gender);
     }
     return (
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require('../img/1.jpg')}
+          style={styles.image}>
+          <KeyboardAwareScrollView
+            enableOnAndroid={true}
+            extraHeight={130}
+            extraScrollHeight={130}>
+            <Image
+              style={styles.tinyLogo}
+              source={require('../img/fit-logo-Recovered.png')}
+            />
 
-            <ImageBackground  source={require('../img/1.jpg')} style={styles.image}>
+            <View style={styles.SectionStyleUsername}>
+              <TextInput
+                style={styles.textinput}
+                placeholder="FIRSTNAME"
+                onChangeText={Fname => setFname(Fname)}
+                placeholderTextColor="#fff"
+                underlineColorAndroid={'transparent'}
+              />
+            </View>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                style={styles.textinput}
+                placeholder="LASTNAME"
+                placeholderTextColor="#fff"
+                onChangeText={Lname => setLname(Lname)}
+                underlineColorAndroid={'transparent'}
+              />
+            </View>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                style={styles.textinput}
+                placeholder="DATE OF BIRTH"
+                placeholderTextColor="#fff"
+                onChangeText={Dob => setDob(Dobname)}
+                underlineColorAndroid={'transparent'}
+              />
+            </View>
+            {/*<View style={styles.SectionStyle}>*/}
+            {/*    <TextInput  style={styles.textinput} placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />*/}
+            {/*</View>*/}
 
-                <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
-
-                    <Image
-                        style={styles.tinyLogo}
-                        source={require('../img/fit-logo-Recovered.png')}
-                    />
-
-
-                    <View style={styles.SectionStyleUsername}>
-                        <TextInput  style={styles.textinput} placeholder="FIRSTNAME" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                    </View>
-                    <View style={styles.SectionStyle}>
-                        <TextInput  style={styles.textinput} placeholder="LASTNAME" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                    </View>
-                    <View style={styles.SectionStyle}>
-
-                        <TextInput  style={styles.textinput} placeholder="DATE OF BIRTH" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                    </View>
-                    {/*<View style={styles.SectionStyle}>*/}
-                    {/*    <TextInput  style={styles.textinput} placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />*/}
-                    {/*</View>*/}
-
-                    <View style={styles.SectionStyle}>
-                        <TextInput  style={styles.textinput} placeholder="Mobile No." placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />
-                    </View>
-                    <View style={{...styles.blockContainer, alignItems: 'center', flexDirection: 'row', marginHorizontal: 15, paddingHorizontal: 10, backgroundColor:'#00000000'}}>
-                        {/*<View style={styles.blockContainer}>*/}
-                        <View style={styles.headingContainer}>
-                            <Text style={styles.headingText}>Gender :
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={{...styles.blockContainerCheckbox, alignItems: 'center', flexDirection: 'row', marginHorizontal: 15, paddingHorizontal: 10, backgroundColor:'#00000000'}}>
-                        <Text style={styles.radioText}>Male: </Text>
-                        <RadioButton  onPress={maleRadioHandler} checked={maleCheck} />
-                        <Text style={styles.radioText}>   Female: </Text>
-                        <RadioButton checked={femaleCheck} onPress={femaleRadioHandler} />
-                    </View>
-                </KeyboardAwareScrollView>
-                <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.Bottombtn} >
-                        <Image source={require('../img/arrow1.png')}  style={styles.Bottomimg}/>
-                    </TouchableOpacity>
-                </View>
-            </ImageBackground>
-
-        </View>
+            <View style={styles.SectionStyle}>
+              <TextInput
+                style={styles.textinput}
+                placeholder="Mobile No."
+                placeholderTextColor="#fff"
+                onChangeText={Mob => setMob(Mob)}
+                underlineColorAndroid={'transparent'}
+              />
+            </View>
+            <View
+              style={{
+                ...styles.blockContainer,
+                alignItems: 'center',
+                flexDirection: 'row',
+                marginHorizontal: 15,
+                paddingHorizontal: 10,
+                backgroundColor: '#00000000',
+              }}>
+              {/*<View style={styles.blockContainer}>*/}
+              <View style={styles.headingContainer}>
+                <Text style={styles.headingText}>Gender :</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                ...styles.blockContainerCheckbox,
+                alignItems: 'center',
+                flexDirection: 'row',
+                marginHorizontal: 15,
+                paddingHorizontal: 10,
+                backgroundColor: '#00000000',
+              }}>
+              <Text style={styles.radioText}>Male: </Text>
+              <RadioButton
+                onPress={Gen => setGen(Gen)}
+                checked={maleCheck}
+                value="male"
+              />
+              <Text style={styles.radioText}> Female: </Text>
+              <RadioButton
+                checked={femaleCheck}
+                onPress={Gen => setGen(Gen)}
+                value="female"
+              />
+            </View>
+          </KeyboardAwareScrollView>
+          <View style={styles.bottom}>
+            <TouchableOpacity
+              style={styles.Bottombtn}
+              onPress={handleSubmitPress}>
+              <Image
+                source={require('../img/arrow1.png')}
+                style={styles.Bottomimg}
+              />
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
+      </View>
     );
 }
 const styles = StyleSheet.create({
