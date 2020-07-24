@@ -54,6 +54,27 @@ export default class Screen3 extends Component {
               </View>
             </View>
           </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Mini</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Regular</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Badass</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );

@@ -20,6 +20,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default class Screen2 extends Component {
 
   constructor(props) {
+    AsyncStorage.getItem("id").then((value) => {
+      this.setState({"id": value});
+
+    })
+        .then(res => {
+          //do something else
+          console.log(res);
+          alert(res);
+        });
     super(props);
     this.state = {
       width: 110

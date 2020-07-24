@@ -52,7 +52,7 @@ const First: () => React$Node = ({ navigation }) => {
                             activeOpacity={.5}
 
                             onPress={() => navigation.navigate('Login')}
-                            // onPress={() => navigation.navigate('Terms')}
+                            // onPress={() => navigation.navigate('Classic')}
                         >
                             <Text style={styles.TextStyle}> GET STARTED  </Text>
                         </TouchableOpacity>

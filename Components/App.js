@@ -40,6 +40,13 @@ import Login from './Login';
 import FirstStepSig from './FirstStepSig';
 import ThirdStepSig from './ThirdStepSig';
 import Terms from './Terms';
+import Classic from './Classic';
+import Bulk from './Bulk';
+import Tone from './Tone';
+import Crosshred from './Crossshred';
+import Leanx from './Leanx';
+import Athlete from './Athlete';
+
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 import 'react-native-gesture-handler';
@@ -90,6 +97,24 @@ const App: () => React$Node = () => {
             />
             <Stack.Screen name="Terms"
                           component={Terms}
+            />
+            <Stack.Screen name="Classic"
+                          component={Classic}
+            />
+            <Stack.Screen name="Bulk"
+                          component={Bulk}
+            />
+            <Stack.Screen name="Tone"
+                          component={Tone}
+            />
+            <Stack.Screen name="Crosshred"
+                          component={Crosshred}
+            />
+            <Stack.Screen name="Leanx"
+                          component={Leanx}
+            />
+            <Stack.Screen name="Athlete"
+                          component={Athlete}
             />
 
         </Stack.Navigator>
