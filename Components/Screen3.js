@@ -35,17 +35,17 @@ export default class Screen3 extends Component {
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
           <View style={[styles.wrapper, { width: width }]}>
             <View style={styles.box}>
-              <Text style={styles.textstl}>Classic</Text>
+              <Text style={styles.textstl}>Mini</Text>
             </View>
           </View>
           <View style={[styles.wrapper, { width: width }]}>
             <View style={styles.box}>
-              <Text style={styles.textstl}>Athlete</Text>
+              <Text style={styles.textstl}>Regular</Text>
             </View>
           </View>
           <View style={[styles.wrapper, { width: width }]}>
             <View style={styles.box}>
-              <Text style={styles.textstl}>Lean-X</Text>
+              <Text style={styles.textstl}>Badass</Text>
             </View>
           </View>
         </View>

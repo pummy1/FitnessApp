@@ -59,13 +59,11 @@ const Login: () => React$Node = ({ navigation }) => {
                         // alert(JSON.stringify("id"+responseJson.data['id']));
                         // AsyncStorage.setItem(STORAGE_KEY, 'pummy');
                         if(responseJson.status=="true"){
-                            try {
+
                                 AsyncStorage.setItem('id', responseJson.data['id'])
-                                alert('Data successfully saved');
+                                alert('Data successfully saved'+responseJson.data['id']);
                                 navigation.navigate('Homeredir');
-                            } catch (e) {
-                                alert('Failed to save the data to the storage')
-                            }
+
                             // console.log(AsyncStorage.getItem('user_id'));
 
                         }
