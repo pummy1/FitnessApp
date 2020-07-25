@@ -51,8 +51,8 @@ const First: () => React$Node = ({ navigation }) => {
                             style={styles.SubmitButtonStyle}
                             activeOpacity={.5}
 
-                            onPress={() => navigation.navigate('Login')}
-                            // onPress={() => navigation.navigate('Classic')}
+                            // onPress={() => navigation.navigate('Login')}
+                            onPress={() => navigation.navigate('Profile')}
                         >
                             <Text style={styles.TextStyle}> GET STARTED  </Text>
                         </TouchableOpacity>

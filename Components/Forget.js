@@ -29,6 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button'
 import {apiConfig} from './config';
+import Toast from 'react-native-simple-toast';
 import AsyncStorage from '@react-native-community/async-storage';
 const Forget: () => React$Node = ({navigation}) => {
 // export default class First extends React.Component {
@@ -36,7 +37,7 @@ const Forget: () => React$Node = ({navigation}) => {
     const handleSubmitPressforget = async () => {
         // const handleSubmitPressLogin = () => {
         if (!userEmail) {
-            alert('Please fill Email');
+            Toast.show('Please fill Email');
             return;
         }
 
@@ -59,17 +60,20 @@ const Forget: () => React$Node = ({navigation}) => {
                 .then(response => response.json())
                 .then(responseJson => {
                     if(responseJson.status=="true"){
-                        alert('Plz check mail for password');
+                        Toast.show('Otp '+responseJson.password);
+                        // alert('Plz check mail for password');
                             navigation.navigate('login');
                     }
                     else{
+                        Toast.show('Something went to Wrong');
                         navigation.navigate('Forget');
-                        alert('Something went to Wrong');
+                        // alert('Something went to Wrong');
                     }
                 })
                 //If response is not in json then in error
                 .catch(error => {
-                    alert(JSON.stringify(error));
+                    Toast.show('Something went to Wrong');
+                    // alert(JSON.stringify(error));
                     console.error(error);
                 });
         }

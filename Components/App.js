@@ -46,7 +46,7 @@ import Tone from './Tone';
 import Crosshred from './Crossshred';
 import Leanx from './Leanx';
 import Athlete from './Athlete';
-
+import Profile from './Profile';
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 import 'react-native-gesture-handler';
@@ -115,6 +115,9 @@ const App: () => React$Node = () => {
             />
             <Stack.Screen name="Athlete"
                           component={Athlete}
+            />
+            <Stack.Screen name="Profile"
+                          component={Profile}
             />
 
         </Stack.Navigator>

@@ -22,20 +22,13 @@ import {
 
 } from 'react-native';
 import RadioButton from '../Components/RadioButton';
-// import { RadioButton } from 'react-native-paper';
-import {
-    Header,
-    LearnMoreLinks,
-    Colors,
-    DebugInstructions,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import FlipToggle from 'react-native-flip-toggle-button'
+import Toast from 'react-native-simple-toast';
+
 const Terms: () => React$Node = ({navigation}) => {
 // export default class First extends React.Component {
     // const [checked, setChecked] = React.useState('first');
     const [terms, settermscondition] = useState(true);
-    const [gettc, setTerms] = useState('false');
+    const [gettc, setTerms] = useState('true');
     const termsRadioHandler = () => {
         if(terms){
             settermscondition(true);
@@ -44,11 +37,12 @@ const Terms: () => React$Node = ({navigation}) => {
         console.log(gettc);
     }
     const handleSubmitPressterms = async () => {
-        if(gettc == true){
+        if(gettc){
+            Toast.show('Successfully Registered');
             navigation.navigate('Login');
         }
         else{
-            alert('Please check Checkbox');
+            Toast.show('Please Accept Terms & Condition');
             navigation.navigate('Terms');
         }
 

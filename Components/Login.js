@@ -22,17 +22,19 @@ import {
     Image,
     ImageBackground, TouchableOpacity,
 } from 'react-native';
+import Toast from 'react-native-simple-toast';
+
 const Login: () => React$Node = ({ navigation }) => {
     let [userEmail, setUserEmail] = useState('');
     let [userPassword, setUserPassword] = useState('');
     const handleSubmitPressLogin = async () => {
     // const handleSubmitPressLogin = () => {
         if (!userEmail) {
-            alert('Please fill Email');
+            Toast.show('Please fill Email');
             return;
         }
         if (!userPassword) {
-            alert('Please fill Password');
+            Toast.show('Please fill Password');
             return;
         }
 
@@ -55,31 +57,23 @@ const Login: () => React$Node = ({ navigation }) => {
                 )
                     .then(response => response.json())
                     .then(responseJson => {
-
-                        // alert(JSON.stringify("id"+responseJson.data['id']));
-                        // AsyncStorage.setItem(STORAGE_KEY, 'pummy');
                         if(responseJson.status=="true"){
-
-                                AsyncStorage.setItem('id', responseJson.data['id'])
-                                alert('Data successfully saved'+responseJson.data['id']);
+                            Toast.show('Successfully Login');
+                                AsyncStorage.setItem('id', responseJson.data['id']);
                                 navigation.navigate('Homeredir');
-
-                            // console.log(AsyncStorage.getItem('user_id'));
-
                         }
                         else{
+                            Toast.show('Email and Password not matched');
                             navigation.navigate('Login');
-                            alert('Email and Password not matched');
                         }
-
                     })
                     //If response is not in json then in error
                     .catch(error => {
+                        Toast.show('Something Went Wrong');
                         alert(JSON.stringify(error));
                         console.error(error);
                     });
             }
-//                    // AsyncStorage.setItem('user_id', responseJson.data[0].user_id);
     };
     return (
         <>

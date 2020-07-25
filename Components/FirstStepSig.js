@@ -34,63 +34,81 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import FlipToggle from 'react-native-flip-toggle-button';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-community/async-storage';
 
-
+import Toast from 'react-native-simple-toast';
 const FirstStepSig: () => React$Node = ({ navigation }) => {
 
     let [Username, setUsername] = useState('');
     let [Userpassword, setUserpassword] = useState('');
-    
+    let [UserConfirmpassword, setUserConfirmpassword] = useState('');
+
     const handleSubmitPress = () => {
         if (!Username) {
-            alert('Please fill Email');
+            Toast.show('Please fill Email');
             return;
         }
         if (!Userpassword) {
-          alert('Please fill Password');
+            Toast.show('Please fill Password');
           return;
         }
-        if (Username != null && Userpassword != null) {
-          let data = new FormData();
-          data.append('email', Username);
-          data.append('password', Userpassword);
+        if (!UserConfirmpassword) {
+            Toast.show('Please fill Confirn Password');
+            return;
+        }
 
-          //POST request
-          fetch(apiConfig.baseUrl+ 'signup_one_1.php',
-            {
-              method: 'POST', //Request Type
-              body: data, //post body
-              headers: {
-                //Header Defination
-                Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
-              },
-            },
-          )
-            .then(response => response.json())
-            //If response is in json then in success
-            .then(responseJson => {
-                if(responseJson.status=="true"){
-                    navigation.navigate('SecondStepSig');
+        if (Username != null && Userpassword != null && UserConfirmpassword!=null) {
+            if (Userpassword != UserConfirmpassword) {
+                Toast.show('Password And Confirm Password not matched');
+                return;
+            }
+            else{
+                let data = new FormData();
+                data.append('email', Username);
+                data.append('password', Userpassword);
 
-                }
-                else{
-                    navigation.navigate('FirstStepSig');
-                    alert('Something Went Wrong');
-                }
+                //POST request
+                fetch(apiConfig.baseUrl+ 'signup_one_1.php',
+                    {
+                        method: 'POST', //Request Type
+                        body: data, //post body
+                        headers: {
+                            //Header Defination
+                            Accept: 'application/json',
+                            'Content-Type': 'multipart/form-data',
+                        },
+                    },
+                )
+                    .then(response => response.json())
+                    //If response is in json then in success
+                    .then(responseJson => {
+                        if(responseJson.status=="true"){
+                            AsyncStorage.setItem('signup_user_id', responseJson.user_id);
+                            Toast.show('Success');
+                            navigation.navigate('SecondStepSig');
+                        }
+                        else{
+                            navigation.navigate('FirstStepSig');
+                            Toast.show('Something Went Wrong');
+                        }
 
-              console.log(responseJson);
-            })
-            //If response is not in json then in error
-            .catch(error => {
-              alert(JSON.stringify(error));
-              console.error(error);
-            });
+                        console.log(responseJson);
+                    })
+                    //If response is not in json then in error
+                    .catch(error => {
+                        // alert(JSON.stringify(error));
+                        console.error(error);
+                        Toast.show('Something Went Wrong');
+
+                    });
+            }
+
+        }
+        else{
+            Toast.show('Something Went Wrong');
         }
         
     }
-// export default class First extends React.Component {
-   // const [checked, setChecked] = React.useState('first');
     return (
       <>
         <StatusBar barStyle="default" />
@@ -118,7 +136,7 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
 
                 <TextInput
                   style={styles.textinput}
-                  placeholder="Username"
+                  placeholder="Email"
                   placeholderTextColor="#fff"
                   underlineColorAndroid={'transparent'}
                   onChangeText={Username => setUsername(Username)}
@@ -151,9 +169,13 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
 
                 <TextInput
                   style={styles.textinput}
+                  secureTextEntry={true}
                   placeholder="Confirm Password"
                   placeholderTextColor="#fff"
                   underlineColorAndroid={'transparent'}
+                  onChangeText={UserConfirmpassword =>
+                      setUserConfirmpassword(UserConfirmpassword)
+                  }
                 />
               </View>
               <TouchableOpacity
@@ -162,14 +184,6 @@ const FirstStepSig: () => React$Node = ({ navigation }) => {
                 onPress={handleSubmitPress}>
                 <Text style={styles.headerbarButon}>Sign up</Text>
               </TouchableOpacity>
-              {/* <TouchableOpacity style={styles.buttoncontainer}
-                        onPress={() => navigation.navigate('SecondStepSig')}>
-                            <Text style={styles.headerbarButon}>Sign up</Text>
-                        </TouchableOpacity> */}
-
-              {/*<TouchableOpacity style={styles.buttoncontainerForget}>*/}
-              {/*    <Text style={styles.headerbarButonForgot}>Forget password ?</Text>*/}
-              {/*</TouchableOpacity>*/}
 
               {/*<View style={styles.socialbottom}>*/}
               {/*  <TouchableOpacity style={styles.btnLeft}>*/}

@@ -15,7 +15,7 @@ export default class SideMenu extends Component {
       {
         navOptionThumb: 'camera',
         navOptionName: 'Home',
-        screenToNavigate: 'First',
+        screenToNavigate: 'Homeredir',
       },
       {
         navOptionThumb: 'image',
@@ -25,7 +25,7 @@ export default class SideMenu extends Component {
       {
         navOptionThumb: 'camera',
         navOptionName: 'Profile',
-        screenToNavigate: 'Third',
+        screenToNavigate: 'Profile',
       },
       {
         navOptionThumb: 'image',

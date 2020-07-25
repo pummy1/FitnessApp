@@ -27,9 +27,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Toast from 'react-native-simple-toast';
 
 import FlipToggle from 'react-native-flip-toggle-button'
 import {apiConfig} from './config';
+import AsyncStorage from '@react-native-community/async-storage';
 const  ThirdStepSig: () => React$Node = ({ navigation }) => {
 // export default class First extends React.Component {
   let [Weight, setWeight] = useState('');
@@ -41,32 +43,36 @@ const  ThirdStepSig: () => React$Node = ({ navigation }) => {
 
   const handleSubmitPressSetpThree = () => {
     if (!Weight) {
-      alert('Please fill Weight');
+      Toast.show('Please fill Weight');
       return;
     }
     if (!Height) {
-      alert('Please fill Height');
+      Toast.show('Please fill Height');
       return;
     }
-    if(Address){
-      alert('please fill Address');
+    if(!Address){
+      Toast.show('Please fill Address');
       return;
     }
-    if(Country){
-      alert('please fill Country');
+    if(!Country){
+      Toast.show('Please fill Country');
       return;
     }
-    if(Pincode){
-      alert('please fill Pincode');
+    if(!Pincode){
+      Toast.show('Please fill First Pincode');
       return;
     }
-    if(State){
-      alert('please fill State');
+    if(!State){
+      Toast.show('Please fill First State');
       return;
     }
     if (Height != null && Weight != null && Address != null && Country != null && Pincode != null && State != null) {
       let data = new FormData();
-      data.append('user_id', 4);
+      AsyncStorage.getItem("signup_user_id").then((user_id) => {
+        // this.setState({"signup_user_id": user_id});
+
+        let user_save_id=user_id;
+      data.append('user_id', user_save_id);
       data.append('weight', Weight);
       data.append('height', Height);
       data.append('address', Address);
@@ -90,22 +96,25 @@ const  ThirdStepSig: () => React$Node = ({ navigation }) => {
           //If response is in json then in success
           .then(responseJson => {
             if(responseJson.status=="true"){
+              Toast.show('Success');
               navigation.navigate('Terms');
             }
             else{
+              Toast.show('Something Went Wrong');
               navigation.navigate('ThirdStepSig');
-              alert('Something Went Wrong');
+              // alert('Something Went Wrong');
             }
 
             console.log(responseJson);
           })
           //If response is not in json then in error
           .catch(error => {
-            alert(JSON.stringify(error));
+            Toast.show('Something Went Wrong');
+            // alert(JSON.stringify(error));
             console.error(error);
           });
+      })
     }
-
   }
   return (
       <>

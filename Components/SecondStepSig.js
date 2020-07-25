@@ -11,90 +11,20 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import RadioButton from '../Components/RadioButton';
 import FloatLabelTextInput from 'react-native-floating-label-text-input';
 import { ImageBackground, StyleSheet, Text, View,Button, Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard , TouchableWithoutFeedback, CheckBox  } from "react-native";
-
+import AsyncStorage from '@react-native-community/async-storage';
+import Toast from 'react-native-simple-toast';
 
 const image = { };
 const SecondStepSig: () => React$Node = ({navigation}) =>
 {
+    const [gender, setGender] = useState('male');
+    const [femaleCheck, setFemaleCheck] = useState(false);
+    const [maleCheck, setMaleCheck] = useState(true);
 
     let [Fname, setFname] = useState('');
     let [Lname, setLname] = useState('');
     let [Dob, setDob] = useState('');
     let [Mob, setMob] = useState('');
-    let [Gen, setGen] = useState('');
-
-    const handleSubmitPress = () => {
-        if (!Fname) {
-            alert('Please fill first name');
-            return;
-        }
-        if (!Lname) {
-          alert('Please fill last name');
-          return;
-        }
-        if (!Dob) {
-          alert('Please fill DOB');
-          return;
-        }
-        if (!Mob) {
-          alert('Please fill mobile');
-          return;
-        }
-        if (!Gen) {
-          alert('Please fill gender');
-          return;
-        }
-        if (Fname != null && Lname != null && Dob != null && Mob != null && Gen != null) {
-          let data = new FormData();
-          data.append('first_name', Fname);
-          data.append('last_name', Lname);
-          data.append('dob', Dob);
-          data.append('mobile', Mob);
-          data.append('gender', Gen);
-            
-
-          //POST request
-          fetch(apiConfig.baseUrl+ 'signup_two_2.php',
-            {
-              method: 'POST', //Request Type
-              body: data, //post body
-              headers: {
-                //Header Defination
-                Accept: 'application/json',
-                'Content-Type': 'multipart/form-data',
-              },
-            },
-          )
-            .then(response => response.json())
-            //If response is in json then in success
-            .then(responseJson => {
-                if(responseJson.status=="true"){
-                    navigation.navigate('ThirdStepSig');
-
-                }
-                else{
-                    navigation.navigate('SecondStepSig');
-                    alert('Something Went Wrong');
-                }
-
-              console.log(responseJson);
-            })
-            //If response is not in json then in error
-            .catch(error => {
-              alert(JSON.stringify(error));
-              console.error(error);
-            });
-        }
-        
-    }
-
-    const [isSelected, setSelection] = useState(false);
-
-    const [isSelected2, setSelection2] = useState(false);
-
-    const [gender, setGender] = useState('male');
-    const [femaleCheck, setFemaleCheck] = useState(false);
-    const [maleCheck, setMaleCheck] = useState(true);
 
     const maleRadioHandler = () => {
         if(femaleCheck){
@@ -106,7 +36,6 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
             setGender('male');
         }
     }
-
     const femaleRadioHandler = () => {
         if(maleCheck){
             setMaleCheck(false);
@@ -118,9 +47,75 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
         }
     }
 
-    const onPressHandler = async() => {
-        console.log(gender);
-    }
+        const handleSubmitPress = async () => {
+
+            if (!Fname) {
+                Toast.show('Please fill First Name');
+                return;
+            }
+            if (!Lname) {
+                Toast.show('Please fill Last Name');
+                return;
+            }
+            if (!Dob) {
+                Toast.show('Please fill DOB');
+                return;
+            }
+            if (!Mob) {
+                Toast.show('Please fill mobile');
+                return;
+            }
+            if (!gender) {
+                Toast.show('Please fill gender');
+                return;
+            }
+            if (Fname != null && Lname != null && Dob != null && Mob != null && gender != null) {
+                AsyncStorage.getItem("signup_user_id").then((user_id) => {
+                    let user_save_id=user_id;
+                    let data = new FormData();
+                    data.append('first_name', Fname);
+                    data.append('last_name', Lname);
+                    data.append('dob', Dob);
+                    data.append('mobile', Mob);
+                    data.append('gender', gender);
+                    data.append('user_id', user_save_id);
+
+                    //POST request
+                    fetch(apiConfig.baseUrl + 'signup_two_2.php',
+                        {
+                            method: 'POST', //Request Type
+                            body: data, //post body
+                            headers: {
+                                //Header Defination
+                                Accept: 'application/json',
+                                'Content-Type': 'multipart/form-data',
+                            },
+                        },
+                    )
+                        .then(response => response.json())
+                        //If response is in json then in success
+                        .then(responseJson => {
+                            if (responseJson.status == "true") {
+                                Toast.show('Success');
+                                navigation.navigate('ThirdStepSig');
+
+                            } else {
+                                navigation.navigate('SecondStepSig');
+                                Toast.show('Something Went Wrong');
+                            }
+                        })
+                        //If response is not in json then in error
+                        .catch(error => {
+                            // alert(JSON.stringify(error));
+                            Toast.show('Something Went Wrong');
+                            console.error(error);
+                        });
+                })
+
+            }
+
+        }
+
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -158,7 +153,7 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
                 style={styles.textinput}
                 placeholder="DATE OF BIRTH"
                 placeholderTextColor="#fff"
-                onChangeText={Dob => setDob(Dobname)}
+                onChangeText={Dob => setDob(Dob)}
                 underlineColorAndroid={'transparent'}
               />
             </View>
@@ -200,18 +195,14 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
               }}>
               <Text style={styles.radioText}>Male: </Text>
               <RadioButton
-                onPress={Gen => setGen(Gen)}
-                checked={maleCheck}
-                value="male"
+                  onPress={maleRadioHandler} checked={maleCheck}
+
               />
               <Text style={styles.radioText}> Female: </Text>
               <RadioButton
-                checked={femaleCheck}
-                onPress={Gen => setGen(Gen)}
-                value="female"
+                  checked={femaleCheck} onPress={femaleRadioHandler}
               />
             </View>
-          </KeyboardAwareScrollView>
           <View style={styles.bottom}>
             <TouchableOpacity
               style={styles.Bottombtn}
@@ -222,6 +213,7 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
               />
             </TouchableOpacity>
           </View>
+        </KeyboardAwareScrollView>
         </ImageBackground>
       </View>
     );
