@@ -33,16 +33,23 @@ export default class Screen4 extends Component {
           <Text style={styles.headingstl}>Preview</Text>
         </View>
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Image source={require('../img/Bench.png')} style={styles.next} />
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Image
+                  source={require('../img/Bench.png')}
+                  style={styles.next}
+                />
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box1}>
-              <Text style={styles.textstl}>Isometric Hold to Bench Press</Text>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box1}>
+                <Text style={styles.textstl}>
+                  Isometric Hold to Bench Press
+                </Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );

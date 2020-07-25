@@ -33,21 +33,48 @@ export default class Screen3 extends Component {
           <Text style={styles.headingstl}>Choose Your Style</Text>
         </View>
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Mini</Text>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Classic</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Regular</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Athlete</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Badass</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Lean-X</Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Mini</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Regular</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, { width: width }]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Badass</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );

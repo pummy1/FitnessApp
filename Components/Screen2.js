@@ -57,36 +57,48 @@ export default class Screen2 extends Component {
           <Text style={styles.headingstl}>Choose Your Style</Text>
         </View>
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Classic</Text>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Classic</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Athlete</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Athlete</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Lean-X</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Lean-X</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Crossshred</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Crossshred</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Tone</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Tone</Text>
+              </View>
             </View>
-          </View>
-          <View style={[styles.wrapper, { width: width }]}>
-            <View style={styles.box}>
-              <Text style={styles.textstl}>Bulk</Text>
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.5}>
+            <View style={[styles.wrapper, {width: width}]}>
+              <View style={styles.box}>
+                <Text style={styles.textstl}>Bulk</Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -120,7 +132,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textstl: {
-
     fontFamily: 'Arial',
     color: '#fff',
     textAlign: 'center',
