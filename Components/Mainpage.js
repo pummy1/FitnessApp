@@ -30,7 +30,7 @@ import Screen3 from './Screen3';
 import Profile from './Profile';
 //Import custom Drawer / sidebar
 import SideMenu from './SideMenu';
-
+import Classic from './Classic';
 //Import custom Drawer / sidebar
 import NotificationAlert from './NotificationAlert';
 
@@ -132,6 +132,7 @@ const Screen4_StackNavigator = createStackNavigator({
         }),
     },
 });
+
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const Drawer = createDrawerNavigator(
     {

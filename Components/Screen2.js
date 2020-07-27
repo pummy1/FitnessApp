@@ -20,34 +20,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default class Screen2 extends Component {
 
   constructor(props) {
-    // AsyncStorage.getItem("id").then((value) => {
-    //   this.setState({"id": value});
-    //   alert("id="+value);
-    // })
-
     super(props);
     this.state = {
       width: 110
     };
   }
 
-
-
-  // const
-  //
-  // readData = async () =>
-  // {
-  //   try {
-  //
-  //     const userAge = await AsyncStorage.getItem('id');
-  //
-  //     if (userAge !== null) {
-  //       alert(userAge);
-  //     }
-  //   } catch (e) {
-  //     alert('Failed to fetch the data from storage')
-  //   }
-  // }
   render() {
     //width of child is 110
     const width = `${100 / parseInt(this.state.width / 110)}%`;
@@ -57,7 +35,8 @@ export default class Screen2 extends Component {
           <Text style={styles.headingstl}>Choose Your Style</Text>
         </View>
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-          <TouchableOpacity activeOpacity={0.5}>
+          <TouchableOpacity activeOpacity={0.5}
+         >
             <View style={[styles.wrapper, {width: width}]}>
               <View style={styles.box}>
                 <Text style={styles.textstl}>Classic</Text>

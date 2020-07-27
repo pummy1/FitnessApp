@@ -20,7 +20,7 @@ import {
     Button,
     Alert,
     Image,
-    ImageBackground, TouchableOpacity,
+    ImageBackground, TouchableOpacity,KeyboardAvoidingView
 } from 'react-native';
 import Toast from 'react-native-simple-toast';
 
@@ -80,158 +80,351 @@ const Login: () => React$Node = ({ navigation }) => {
     };
     return (
         <>
-            <StatusBar barStyle="default"/>
-            <ImageBackground
-                source={require('../img/3.jpg')}
-                style={{
-                    flex: 1,
-                }}>
-                <KeyboardAwareScrollView  enableOnAndroid={true} extraHeight={130} extraScrollHeight={130}>
-                <Image source={require('../img/fit-logo-Recovered.png')}
-                       style={styles.logo}>
-                </Image>
-                <View>
-                    <Text style = {styles.text}>Login to stay fit</Text>
+            <StatusBar barStyle="default" />
 
-                </View>
-                <View>
-                    <Text style = {styles.loginsubtext}>Save Money with club membership card</Text>
-                </View>
-                <View style = {styles.inputContainer}>
-                    <TextInput style = {styles.input}
-                               underlineColorAndroid = "transparent"
-                               placeholder = "EMAIL"
-                               placeholderTextColor = "#fff"
-                               autoCapitalize = "none"
-                               onChangeText={UserEmail => setUserEmail(UserEmail)}
+            <View style={styles.container}>
+                <ImageBackground
+                    source={require('../img/3.jpg')}
+                    style={styles.image}>
+                    <Image
+                        source={require('../img/fit-logo-Recovered.png')}
+                        style={styles.tinyLogo}
                     />
-                </View>
-                <View style = {styles.inputContainer2}>
-                    <TextInput style = {styles.input}
-                               secureTextEntry={true}
-                               underlineColorAndroid = "transparent"
-                               placeholder = "PASSWORD"
-                               placeholderTextColor = "#fff"
-                               autoCapitalize = "none"
-                               onChangeText={UserPassword => setUserPassword(UserPassword)}
-                    />
-                </View>
+                    <Text style={styles.header}>Login to stay fit</Text>
+                    <Text style={styles.headerbar}>
+                        Save Money with club membership card
+                    </Text>
+                    <KeyboardAvoidingView
+                        behavior={Platform.OS == 'android' ? 'padding' : 'height'}
+                        style={styles.container}>
+                        <View style={styles.SectionStyleUsername}>
+                            <Image
+                                source={require('../img/email.png')}
+                                style={styles.imageStyle}
+                            />
 
-                <View>
-                    <TouchableOpacity
-                        style={styles.SubmitButtonStyle}
-                        activeOpacity={.5}
-                        onPress={handleSubmitPressLogin}>
-                        <Text style={styles.TextStyle}> LOG IN </Text>
-                    </TouchableOpacity>
-                </View>
+                            <TextInput
+                                style={styles.textinput}
+                                placeholder="Email"
+                                placeholderTextColor="#fff"
+                                underlineColorAndroid={'transparent'}
+                                onChangeText={UserEmail => setUserEmail(UserEmail)}
+                            />
+                        </View>
 
-                <View>
-                    <TouchableOpacity
-                                      onPress={() => navigation.navigate('Forget')}>
-                        <Text style = {styles.fd}>Forgot Password ?</Text>
-                    </TouchableOpacity>
+                        <View style={styles.SectionStyle}>
+                            <Image
+                                source={require('../img/password-(1).png')}
+                                style={styles.imageStyle}
+                            />
 
-                </View>
-                <View style={styles.buttoncontainerSignIn}>
-                    <TouchableOpacity
-                                      onPress={() => navigation.navigate('FirstStepSig')}>
-                        <Text style = {styles.signin}>Dont have account ? Sign in Now</Text>
-                    </TouchableOpacity>
+                            <TextInput
+                                style={styles.textinput}
+                                secureTextEntry={true}
+                                placeholder="Password"
+                                onChangeText={UserPassword => setUserPassword(UserPassword)}
+                                placeholderTextColor="#fff"
+                                underlineColorAndroid={'transparent'}
+                            />
+                        </View>
 
-                </View>
-                </KeyboardAwareScrollView>
-            </ImageBackground>
+
+                        <TouchableOpacity
+                            style={styles.buttoncontainer}
+                            activeOpacity={0.5}
+                            onPress={handleSubmitPressLogin}>
+                            <Text style={styles.headerbarButon}>Log In</Text>
+                        </TouchableOpacity>
+
+                        {/*<View style={styles.socialbottom}>*/}
+                        {/*  <TouchableOpacity style={styles.btnLeft}>*/}
+                        {/*    <Image*/}
+                        {/*      source={require('../img/facebook.png')}*/}
+                        {/*      style={styles.img}*/}
+                        {/*    />*/}
+                        {/*  </TouchableOpacity>*/}
+                        {/*  <TouchableOpacity style={styles.btn}>*/}
+                        {/*    <Image*/}
+                        {/*      source={require('../img/twitter.png')}*/}
+                        {/*      style={styles.img}*/}
+                        {/*    />*/}
+                        {/*  </TouchableOpacity>*/}
+
+                        {/*  <TouchableOpacity style={styles.btnRight}>*/}
+                        {/*    <Image*/}
+                        {/*      source={require('../img/google-plus.png')}*/}
+                        {/*      style={styles.img}*/}
+                        {/*    />*/}
+                        {/*  </TouchableOpacity>*/}
+                        {/*</View>*/}
+                        <View>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Forget')}>
+                                <Text style = {styles.fd}>Forgot Password ?</Text>
+                            </TouchableOpacity>
+
+                        </View>
+                        <View style={styles.bottom}>
+                            <TouchableOpacity
+                                style={styles.buttoncontainerSignIn}
+                                onPress={() => navigation.navigate('FirstStepSig')}>
+                                <Text style={styles.headerbarButonSignIn}>
+                                    Dont have account ? Sign in Now
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </KeyboardAvoidingView>
+                </ImageBackground>
+            </View>
         </>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    backgroundImage: {
+    container: {
         flex: 1,
-        resizeMode: 'cover', // or 'stretch'
-        alignItems: 'stretch',
+        flexDirection: "column"
+    },
+    image: {
+        flex: 1,
+        justifyContent: "center",
+    },
+    text: {
+        color: "grey",
+        fontSize: 30,
+        fontWeight: "bold"
+    },
+    tinyLogo: {
+        width: 130,
+        height: 40,
+        alignSelf: 'center',
+        marginTop: 60,
+
+    },
+    textLabel: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        fontFamily: 'Verdana',
+        marginBottom: 10,
+        color: '#595856'
+    },
+    header : {
+        fontSize : 20,
+        color : '#f9a717',
+        alignSelf: 'center',
+        marginTop: 50,
+
+    },
+    headerbar : {
+        fontSize : 10,
+        color : '#fff',
+        alignSelf: 'center',
+        marginTop: 10,
+
+    },
+    headerbarButon : {
+        fontSize : 18,
+        color : '#fff',
+        alignSelf: 'center',
+
+
+    },
+    textinput : {
+        alignSelf : 'center',
+        height : 40,
+        width : 300,
+        paddingLeft : 40,
+        marginBottom: 20,
+        color : '#fff',
+        borderBottomColor: '#f8f8f8',
+        borderBottomWidth : 1,
+        marginTop: 20,
+
+    },
+    buttoncontainer : {
+        height : 46,
+        width : 250,
+        borderRadius : 46,
+        backgroundColor : '#f9a717',
+        paddingVertical: 10,
         justifyContent: 'center',
+        alignSelf : 'center',
+        marginTop: 25,
     },
+    imageStyle: {
+        padding: 10,
+        margin: 5,
+        height: 25,
+        width: 25,
+        resizeMode : 'stretch',
+        alignItems: 'center'
+    },
+    passwordContainer: {
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: '#000',
+        paddingBottom: 10,
+        alignSelf : 'center',
+        height : 80,
+        width : 300,
+    },
+    inputStyle: {
+        flex: 1,
+    },
+    SectionStyleUsername: {
+        flexDirection: 'row',
+        width : 350,
+        backgroundColor: '#00000000',
+        borderColor: '#00000000',
+        height: 40,
+        alignSelf:'center',
+        marginTop: 40,
 
-    SubmitButtonStyle: {
-        marginTop:70,
-        paddingTop:15,
-        paddingBottom:15,
-        marginLeft:40,
-        marginRight:40,
-        backgroundColor:'#F9A717',
-        borderRadius:50,
-        borderWidth: 1,
-        borderColor: '#F9A717'
+
+        margin: 10,
     },
-    TextStyle:{
-        color:'#fff',
-        textAlign:'center',
-        fontWeight:'bold',
-        fontSize:17
+    SectionStyle: {
+        flexDirection: 'row',
+        width : 350,
+        backgroundColor: '#00000000',
+        borderColor: '#00000000',
+        height: 40,
+        alignSelf:'center',
+        marginTop: 20,
+
+
+        margin: 10,
     },
-    logo:{
-        marginLeft: 130,
-        marginTop: 100,
+    ImageStyle: {
+        padding: 10,
+        margin: 5,
+        left : 30,
+        height: 25,
+        width: 25,
+        resizeMode: 'stretch',
         alignItems: 'center',
-        justifyContent:'center',
-
     },
-    input: {
-        height: 50,
-        width:375,
-        borderColor: '#fff',
-        borderWidth: 0,
-        borderStyle: 'solid',
-        color: '#fff',
-        fontSize: 15,
-        marginLeft:15,
-    },
-    inputContainer:{
-        borderBottomColor: '#fff',
-        borderBottomWidth: 1,
-        height: 50,
-        width: 375,
-        marginTop:40,
-        marginLeft:15
-    },
-    inputContainer2:{
-        borderBottomColor: '#fff',
-        borderBottomWidth: 1,
-        height: 50,
-        width: 375,
-        marginTop:10,
-        marginLeft:15
-    },
-    text:{
-        color:'#ecc40c',
-        marginLeft:145,
-        fontSize:20,
-        marginTop:40
-
-    },
-    loginsubtext:{
-        color:'#fff',
-        marginLeft:80,
-        fontSize:15,
-        marginTop:5
-    },
-    signin:{
-        color:'#fff',
-        marginLeft:100,
-        fontSize:15,
-        marginTop:50
-    },
+    // buttoncontainerForget : {
+    //     height : 40,
+    //     width : 250,
+    //     borderRadius : 40,
+    //     backgroundColor : '#00000000',
+    //     paddingVertical: 10,
+    //     justifyContent: 'center',
+    //     alignSelf : 'center',
+    //     marginTop: 0,
+    // },
+    // headerbarButonForgot : {
+    //     fontSize : 13,
+    //     color : '#fff',
+    //     alignSelf: 'center',
+    // },
     fd:{
         color:'#fff',
-        marginLeft:142,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // marginLeft:142,
         fontSize:15,
         marginTop:10
     },
-    buttoncontainerSignIn:{
-        marginBottom:20
-    }
+    buttoncontainerSignIn : {
+        height : 40,
+        width : 250,
+        borderRadius : 40,
+        backgroundColor : '#00000000',
+        paddingVertical: 10,
+        justifyContent: 'center',
+        alignSelf : 'center',
+        marginBottom: 0,
+    },
+    headerbarButonSignIn : {
+        fontSize : 15,
+        color : '#fff',
+        alignSelf: 'center',
+
+
+    },
+    MainContainer:
+        {
+            flex: 1,
+            backgroundColor : '#00000000',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+    ImageClass:
+        {
+            width: 24,
+            alignSelf : 'center',
+            alignItems : 'center',
+            height: 24,
+
+        },
+    socialcontainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'transparent'
+    },
+    absoluteView: {
+        flex: 1,
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    img: {
+        flex: 1,
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+        height : 36,
+        width:36
+    },
+    btn: {
+        flex: 1,
+        height:24,
+        width:24,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    btnLeft: {
+        flex: 1,
+        height:24,
+        width:24,
+        left : 85,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    btnRight: {
+        flex: 1,
+        height:24,
+        width:24,
+        left : -85,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent'
+    },
+    socialbottom: {
+        flex: 1,
+        flexDirection: 'row',
+
+        justifyContent: 'flex-end',
+        marginBottom: -110,
+    },
+    bottom: {
+        flex: 1,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginBottom: -50
+    },
+
+
 
 });
 export default Login;

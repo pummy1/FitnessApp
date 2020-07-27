@@ -17,7 +17,7 @@ import {
   Button,
   Alert,
   Image,
-  ImageBackground, TouchableOpacity,
+  ImageBackground, TouchableOpacity,KeyboardAvoidingView
 } from 'react-native';
 import {
   Header,
