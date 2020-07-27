@@ -1,5 +1,6 @@
 export const apiConfig = {
     baseUrl: 'http://zanjo.io/projects/fitnessapp/',
+    baseUrlVideo: 'http://zanjo.io/projects/fitnessapp/video/',
 // should end with a slash
 //     clientId: '1',
 //     clientSecret: 'xc34jamesDevV41XwKbWhrsGgHvR3hjwG8',

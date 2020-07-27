@@ -60,7 +60,10 @@ const Login: () => React$Node = ({ navigation }) => {
                         if(responseJson.status=="true"){
                             Toast.show('Successfully Login');
                                 AsyncStorage.setItem('id', responseJson.data['id']);
+                            AsyncStorage.setItem('Name', responseJson.data['id']);
+                            AsyncStorage.setItem('BMI', responseJson.data['id']);
                                 navigation.navigate('Homeredir');
+                                // navigation.navigate('Profile');
                         }
                         else{
                             Toast.show('Email and Password not matched');

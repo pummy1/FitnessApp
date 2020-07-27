@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 // import all basic components
-
+// const Screen2: () => React$Node = ({ navigation }) => {
 export default class Screen2 extends Component {
 
   constructor(props) {

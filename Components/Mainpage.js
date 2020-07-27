@@ -27,7 +27,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
 import Screen3 from './Screen3';
-
+import Profile from './Profile';
 //Import custom Drawer / sidebar
 import SideMenu from './SideMenu';
 
@@ -116,7 +116,22 @@ const Screen3_StackNavigator = createStackNavigator({
         }),
     },
 });
-
+const Screen4_StackNavigator = createStackNavigator({
+    //All the screen from the Third Option will be indexed here
+    Profile: {
+        screen: Profile,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Profile',
+            headerLeft: () => (
+                <NavigationDrawerStructure navigationProps={navigation} />
+            ),
+            headerStyle: {
+                backgroundColor: '#FF9800',
+            },
+            headerTintColor: '#fff',
+        }),
+    },
+});
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const Drawer = createDrawerNavigator(
     {
@@ -124,6 +139,7 @@ const Drawer = createDrawerNavigator(
         NavScreen1: { screen: FirstActivity_StackNavigator },
         NavScreen2: { screen: Screen2_StackNavigator },
         NavScreen3: { screen: Screen3_StackNavigator },
+        NavScreen4: { screen: Screen4_StackNavigator },
     },
     {
         contentComponent: SideMenu,

@@ -7,6 +7,7 @@
  */
 import React, { useState } from "react";
 import VideoPlayer from 'react-native-video-player';
+import {apiConfig} from './config';
 
 import {  StyleSheet, Text, View,Button
     , Image, TouchableOpacity } from "react-native";
@@ -16,7 +17,7 @@ const Athlete: () => React$Node = ({navigation}) =>
     return(
         <View style={styles.container}>
             <VideoPlayer
-                video={{ uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
+                video={{ uri: apiConfig.baseUrlVideo+'Andrei-Deiu-Motivation-2020-Alan-Walker-Alone-YouTube.mp4' }}
                 videoWidth={1600}
                 videoHeight={1400}
                 thumbnail={require('../img/fit-logo-Recovered.png')}

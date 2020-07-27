@@ -7,72 +7,41 @@
  */
 
 import React, { useState } from "react";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import RadioButton from '../Components/RadioButton';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
-import VideoPlayer from 'react-native-video-player';
-
 import ProgressCircle from 'react-native-progress-circle';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
-
 import { ImageBackground, StyleSheet, Text, View,Button
     , Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard,Animated , TouchableWithoutFeedback, CheckBox,ScrollView  } from "react-native";
 import App from './App';
-
-
-
-const Profile: () => React$Node = () => {
-
-
-
+import AsyncStorage from '@react-native-community/async-storage';
+export default class Profile extends React.Component {
+// const Profile: () => React$Node = () => {
+//      componentDidMount()
+//     {
+//         AsyncStorage.getItem("signup_user_id").then((user_id) =>
+//         {
+//             // let user_save_id = user_id;
+//             this.setState({
+//                 data: user_id,
+//                 // pin:user_id,
+//
+//             })
+//         })
+//     }
+    render() {
     return(
-
-
         <View style={styles.container}>
-
-
             <ScrollView>
-
-
                 <View style={styles.SectionStyleWeightLog}>
-
                     <ImageBackground  source={require('../img/Rounded-Rectangle-21.jpg')} style={styles.image}>
-
-
-
-                        <View style={styles.SectionStyle}>
-
-                            <TouchableOpacity >
-
-                                <Image source={require('../img/menu.png')}  style={styles.img}/>
-                            </TouchableOpacity>
-
-
-                            <TouchableOpacity style={styles.btn}>
-
-                                <Image source={require('../img/notification.png')}  style={styles.Bottomimg}/>
-                            </TouchableOpacity>
-
-                        </View>
-
-
-
                         <View style={styles.SectionStyleWeightLogback}>
-
-
                             <View style={styles.SectionStyleProgress}>
-
-                                <Text style={styles.headingText}>Khusheel verma</Text>
+                                <Text style={styles.headingTextname}>Pummy Sinha</Text>
                                 <View style={styles.SectionStyleAdvance}>
                                     <Image source={require('../img/gym-(3).png')}  style={styles.AdvanceBottomimg}/>
                                     <Text style={styles.AdvancedheadingText}>Advanced</Text>
-
                                 </View>
-
                             </View>
-
                             <View style={styles.SectionStyleProgressCircleView}>
-
                                 <ProgressCircle
                                     percent={75}
                                     radius={60}
@@ -83,86 +52,45 @@ const Profile: () => React$Node = () => {
                                     shadowColor="#323231"
                                     bgColor="#3c4145"
                                     TouchableOpacity={5}
-
                                 >
                                     <Text style={{ fontSize: 18 ,backgroundColor:'#00000000',color:'white'}}>{'30 %'}</Text>
                                     <Text style={{ fontSize: 18,backgroundColor:'#00000000',color:'white' }}>{'of goals'}</Text>
                                 </ProgressCircle>
-
                             </View>
-
                         </View>
-
                     </ImageBackground>
                 </View>
-
                 <View style={styles.SectionStyleSegemntView}>
-
                     <View style={styles.viewback}>
-
                         <View style={styles.SectionStyleSubView}>
-
                             <Text style={{ fontSize: 16 ,backgroundColor:'#00000000',color:'white'}}>{'24 %'}</Text>
                             <Text style={{ fontSize: 9,backgroundColor:'#00000000',color:'white' }}>{'Body Full'}</Text>
-
-
                         </View>
-
-
                     </View>
-
                     <View style={styles.viewbackMiddle}>
-
                         <View style={styles.SectionStyleSubView}>
-
                             <Text style={{ fontSize: 16 ,backgroundColor:'#00000000',color:'white'}}>{'72 Kg'}</Text>
                             <Text style={{ fontSize: 9,backgroundColor:'#00000000',color:'white' }}>{'Weight'}</Text>
-
-
                         </View>
-
                     </View>
-
                     <View style={styles.viewback}>
-
                         <View style={styles.SectionStyleSubView}>
-
                             <Text style={{ fontSize: 16 ,backgroundColor:'#00000000',color:'white'}}>{'186 cm'}</Text>
                             <Text style={{ fontSize: 9,backgroundColor:'#00000000',color:'white' }}>{'Height'}</Text>
-
-
                         </View>
-
                     </View>
-
                 </View>
-
-
                 <Text  style={styles.headingTextMiddle}>You Made a Great Progress !</Text>
                 <Text  style={styles.headingTextMiddle}>Dont Give Up !</Text>
-
-
                 <View style={styles.viewBottomback}>
-
                     <View style={styles.viewBottomSubViewback}>
-
                         <View style={styles.SectionStyleCardioBack}>
                             <Image source={require('../img/home-run.png')}  style={styles.CardioBottomimg}/>
                             <Text style={styles.CardioheadingText}>Cardio</Text>
-
                         </View>
-
-
                         <View style={styles.SectionStyleCardioCornerSide}>
-
                             <Text style={styles.CardioheadingTextCorner}>141 min/161 min</Text>
-
                         </View>
-
-
-
-
-
                     </View>
 
                     <View style={styles.example}>
@@ -223,7 +151,7 @@ const Profile: () => React$Node = () => {
         </View>
 
     );
-
+    }
 
 }
 
@@ -413,21 +341,17 @@ const styles = StyleSheet.create({
     SectionStyleProgress: {
         flexDirection: 'column',
         width : 230,
-
         backgroundColor: '#00000000',
         borderColor: '#00000000',
         height: 150,
         alignSelf:'flex-start',
         justifyContent:'flex-start',
         marginTop: 50,
-
-
         margin: 0,
     },
     SectionStyleSubView: {
         flexDirection: 'column',
         width : 100,
-
         backgroundColor: '#00000000',
         borderColor: '#00000000',
         height: 30,
@@ -448,14 +372,11 @@ const styles = StyleSheet.create({
         justifyContent:'flex-start',
         marginTop: -20,
         marginLeft:10,
-
-
         top:70
     },
     SectionStyleAdvance: {
         flexDirection: 'row',
         width : 100,
-
         backgroundColor: '#00000000',
         borderColor: '#00000000',
         height: 20,
@@ -467,7 +388,6 @@ const styles = StyleSheet.create({
     SectionStyleCardioBack: {
         flexDirection: 'row',
         width : 150,
-
         backgroundColor: '#00000000',
         borderColor: '#00000000',
         height: 40,
@@ -480,7 +400,6 @@ const styles = StyleSheet.create({
     SectionStyleCardioCornerSide: {
         flexDirection: 'row',
         width : 150,
-
         backgroundColor: '#00000000',
         borderColor: '#00000000',
         height: 40,
@@ -492,32 +411,23 @@ const styles = StyleSheet.create({
     },
     SectionStyleWeightLog: {
         flexDirection: 'column',
-
         borderRadius:6,
         backgroundColor: '#00000000',
         borderColor: '#00000000',
-
         alignSelf:'stretch',
         alignItems:'stretch',
         justifyContent:'flex-start',
         top: 0,
         height:245,
-
         margin: 0,
     },
     SectionStyleWeightLogback: {
         flexDirection: 'row',
         width : 420,
-
         backgroundColor: '#00000000',
-
-
         height: 200,
-
         alignSelf:'center',
         top: -30,
-
-
         margin: 6,
     },
     // ImageStyle: {
@@ -709,29 +619,20 @@ const styles = StyleSheet.create({
         height:180,
         margin:12,
         top:25,
-
         marginTop:0,
-
         borderRadius:5
-
-
     },
     viewBottomSubViewback: {
         flex: 1,
-
         flexDirection: 'row',
         alignItems: 'stretch',
         alignSelf: 'stretch',
         justifyContent: 'flex-start',
         backgroundColor:'#3c4145',
         height:300,
-
         top:5,
         marginTop:1,
-
         borderRadius:5
-
-
     },
     viewback: {
         flex: 1,
@@ -743,10 +644,7 @@ const styles = StyleSheet.create({
         height:90,
         margin:1,
         width:60,
-
         borderRadius:5
-
-
     },
     viewbackMiddle: {
         flex: 1,
@@ -758,17 +656,11 @@ const styles = StyleSheet.create({
         height:90,
         margin:1,
         width:60,
-
-
-
     },
-
     socialbottom: {
         flex: 1,
         flexDirection: 'row',
-
         justifyContent: 'flex-start',
-
         marginLeft:-200,
         paddingLeft:200,
         marginTop: 0
@@ -776,22 +668,17 @@ const styles = StyleSheet.create({
     socialbottomMaleView: {
         flex: 1,
         flexDirection: 'row',
-
         justifyContent: 'center',
         marginBottom: 0,
         marginLeft:-160,
-
     },
     socialbottomFemaleView: {
         flex: 1,
         flexDirection: 'row',
-
         justifyContent: 'center',
         marginBottom: 0,
         marginLeft:-100,
         margin:-40
-
-
     },
     bottom: {
         flex: 1,
@@ -823,6 +710,15 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 5,
         marginTop:0
+    },
+    headingTextname: {
+        fontSize: 20,
+        fontWeight: '800',
+        color:'white',
+        marginTop:0,
+        marginLeft:39,
+        top:0,
+
     },
     headingText: {
         fontSize: 20,
@@ -920,6 +816,6 @@ const styles = StyleSheet.create({
         color:'white',
     },
 });
-export default Profile;
+// export default Profile;
 
 // https://reactnative.dev/docs/layout-props#left,
