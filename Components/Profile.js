@@ -15,16 +15,19 @@ import App from './App';
 import AsyncStorage from '@react-native-community/async-storage';
 // export default class Profile extends React.Component ({navigation}) {
 // const Profile: () => React$Node = () => {
-export default function Profile ()
-{
-    const navigation = useNavigation();
-    constructor()
-    {
+export default class Profile extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: 110
+        };
             AsyncStorage.getItem("Name").then((Name) =>
             {
-                alert(Name);
-                this.data=Name;
-                alert(this.data);
+                // alert(Name);
+                // this.data=Name;
+                this.state = { data: Name() }
+                // alert(this.data);
                 // let user_save_id = user_id;
                 // this.setState({
                 //     data: Name,
@@ -32,20 +35,10 @@ export default function Profile ()
                 // })
             })
 }
-    //  componentDidMount()
-    // {
-    //     AsyncStorage.getItem("signup_user_id").then((user_id) =>
-    //     {
-    //         // let user_save_id = user_id;
-    //         this.setState({
-    //             data: user_id,
-    //             // pin:user_id,
-    //
-    //         })
-    //     })
-    // }
-    // render()
-    // {
+
+    render()
+    {
+        const { name } = this.state;
     return(
         <View style={styles.container}>
             <ScrollView>
@@ -53,7 +46,8 @@ export default function Profile ()
                     <ImageBackground  source={require('../img/Rounded-Rectangle-21.jpg')} style={styles.image}>
                         <View style={styles.SectionStyleWeightLogback}>
                             <View style={styles.SectionStyleProgress}>
-                                <Text style={styles.headingTextname}></Text>
+                                {/*{name.map(item => <Text>{item}</Text>)}*/}
+                                <Text style={styles.headingTextname}>Pummy Sinha</Text>
                                 <View style={styles.SectionStyleAdvance}>
                                     <Image source={require('../img/gym-(3).png')}  style={styles.AdvanceBottomimg}/>
                                     <Text style={styles.AdvancedheadingText}>Advanced</Text>
@@ -157,7 +151,7 @@ export default function Profile ()
                 </View>
 
                 {/*<TouchableOpacity style={styles.Bottombtn}*/}
-                {/*                  onPress={() => navigation.navigate('Homeredir')}>*/}
+                {/*                  onPress={handleSubmitPressLogin}>*/}
 
                 {/*    <Text style={styles.headingText}>BACK</Text>*/}
 
@@ -169,7 +163,7 @@ export default function Profile ()
         </View>
 
     );
-    // }
+    }
 
 }
 

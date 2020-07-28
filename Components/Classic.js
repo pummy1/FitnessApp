@@ -8,13 +8,16 @@
 import React, { useState } from "react";
 import VideoPlayer from 'react-native-video-player';
 
-import {  StyleSheet, Text, View,Button
-    , Image, TouchableOpacity } from "react-native";
+import {
+    StyleSheet, Text, View, Button
+    , Image, TouchableOpacity, ScrollView,
+} from 'react-native';
 import {apiConfig} from './config';
 
 const Classic: () => React$Node = ({navigation}) =>
 {
     return(
+<ScrollView>
         <View style={styles.container}>
             <VideoPlayer
                 video={{ uri: apiConfig.baseUrlVideo+'Andrei-Deiu-Motivation-2020-Alan-Walker-Alone-YouTube.mp4' }}
@@ -37,6 +40,7 @@ const Classic: () => React$Node = ({navigation}) =>
                 <Text style={styles.headingTextWeight}>Each Weight</Text>
             </View>
         </View>
+</ScrollView>
     );
 }
 

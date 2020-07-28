@@ -25,7 +25,10 @@ export default class HomeScreen extends React.Component {
             width: 110
         };
     }
-
+    classiclick = () => {
+        alert("yes");
+        this.props.navigation.navigate('Classic');
+    }
     render() {
         const width = `${100 / parseInt(this.state.width / 110)}%`;
         return (
@@ -50,6 +53,7 @@ export default class HomeScreen extends React.Component {
                     </View>
                     <View style={styles.container} onLayout={this.onLayout.bind(this)}>
                         <TouchableOpacity activeOpacity={0.5}
+                                          onPress={(this.classiclick)}
                         >
                             <View style={[styles.wrapper3, { width: width }]}>
                                 <View style={styles.box2}>

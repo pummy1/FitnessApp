@@ -42,7 +42,6 @@ const Login: () => React$Node = ({ navigation }) => {
                 let data = new FormData();
                 data.append('email', userEmail);
                 data.append('password', userPassword);
-
                 //POST request
                 fetch(apiConfig.baseUrl+ 'login.php',
                     {

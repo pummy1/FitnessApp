@@ -22,7 +22,7 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
-
+import Login from './Login';
 //Import all the screens
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
@@ -31,7 +31,6 @@ import Profile from './Profile';
 //Import custom Drawer / sidebar
 import SideMenu from './SideMenu';
 import Classic from './Classic';
-//Import custom Drawer / sidebar
 import NotificationAlert from './NotificationAlert';
 
 //Navigation Drawer Structure for all screen
@@ -132,7 +131,32 @@ const Screen4_StackNavigator = createStackNavigator({
         }),
     },
 });
-
+const Screen5_StackNavigator = createStackNavigator({
+    //All the screen from the Third Option will be indexed here
+    Login: {
+        screen: Login,
+        // headerShown: false,
+        navigationOptions: {
+            headerShown: false,
+        }
+    },
+});
+const Screen6_StackNavigator = createStackNavigator({
+    //All the screen from the Third Option will be indexed here
+    Classic: {
+        screen: Classic,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Classic',
+            headerLeft: () => (
+                <NavigationDrawerStructure navigationProps={navigation} />
+            ),
+            headerStyle: {
+                backgroundColor: '#FF9800',
+            },
+            headerTintColor: '#fff',
+        }),
+    },
+});
 //Drawer Navigator for the Navigation Drawer / Sidebar
 const Drawer = createDrawerNavigator(
     {
@@ -141,6 +165,9 @@ const Drawer = createDrawerNavigator(
         NavScreen2: { screen: Screen2_StackNavigator },
         NavScreen3: { screen: Screen3_StackNavigator },
         NavScreen4: { screen: Screen4_StackNavigator },
+        NavScreen5: { screen: Screen5_StackNavigator },
+        NavScreen6: { screen: Screen6_StackNavigator },
+
     },
     {
         contentComponent: SideMenu,

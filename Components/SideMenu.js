@@ -1,16 +1,14 @@
 
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, Text, ScrollView,TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
-
+import AsyncStorage from '@react-native-community/async-storage';
+import { useNavigation } from '@react-navigation/native';
 export default class SideMenu extends Component {
+
   constructor() {
+
     super();
-    //Setting up the Main Top Large Image of the Custom Sidebar
-    // this.proileImage ='../img/Recovered.png';
-    //Array of the sidebar navigation option with icon and screen to navigate
-    //This screens can be any screen defined in Drawer Navigator in App.js
-    //You can find the Icons from here https://material.io/tools/icons/
     this.items = [
       {
         navOptionThumb: 'camera',
@@ -39,7 +37,12 @@ export default class SideMenu extends Component {
       },
     ];
   }
-  
+
+    loginclick = () => {
+    alert("Are you sure ?");
+      AsyncStorage.clear(); // to clear the token
+    this.props.navigation.navigate('Login');
+  }
   
   render() {
     return (
@@ -99,9 +102,13 @@ export default class SideMenu extends Component {
           </View>
         </ScrollView>
 
-        <View style={styles.footerContainer}>
+
+          <TouchableOpacity onPress={(this.loginclick)}>
+            <View style={styles.footerContainer}>
           <Text style={styles.textSt}>Logout</Text>
+
         </View>
+          </TouchableOpacity>
       </View>
     );
   }
