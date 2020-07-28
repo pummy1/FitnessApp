@@ -60,7 +60,7 @@ const Login: () => React$Node = ({ navigation }) => {
                         if(responseJson.status=="true"){
                             Toast.show('Successfully Login');
                                 AsyncStorage.setItem('id', responseJson.data['id']);
-                            AsyncStorage.setItem('Name', responseJson.data['id']);
+                            AsyncStorage.setItem('Name', responseJson.f_l);
                             AsyncStorage.setItem('BMI', responseJson.data['id']);
                                 navigation.navigate('Homeredir');
                                 // navigation.navigate('Profile');
@@ -73,7 +73,7 @@ const Login: () => React$Node = ({ navigation }) => {
                     //If response is not in json then in error
                     .catch(error => {
                         Toast.show('Something Went Wrong');
-                        alert(JSON.stringify(error));
+                        // alert(JSON.stringify(error));
                         console.error(error);
                     });
             }

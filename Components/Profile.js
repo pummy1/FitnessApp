@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from "react";
 import ProgressCircle from 'react-native-progress-circle';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
@@ -13,21 +13,39 @@ import { ImageBackground, StyleSheet, Text, View,Button
     , Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard,Animated , TouchableWithoutFeedback, CheckBox,ScrollView  } from "react-native";
 import App from './App';
 import AsyncStorage from '@react-native-community/async-storage';
-export default class Profile extends React.Component {
+// export default class Profile extends React.Component ({navigation}) {
 // const Profile: () => React$Node = () => {
-//      componentDidMount()
-//     {
-//         AsyncStorage.getItem("signup_user_id").then((user_id) =>
-//         {
-//             // let user_save_id = user_id;
-//             this.setState({
-//                 data: user_id,
-//                 // pin:user_id,
-//
-//             })
-//         })
-//     }
-    render() {
+export default function Profile ()
+{
+    const navigation = useNavigation();
+    constructor()
+    {
+            AsyncStorage.getItem("Name").then((Name) =>
+            {
+                alert(Name);
+                this.data=Name;
+                alert(this.data);
+                // let user_save_id = user_id;
+                // this.setState({
+                //     data: Name,
+                //     // pin:user_id,
+                // })
+            })
+}
+    //  componentDidMount()
+    // {
+    //     AsyncStorage.getItem("signup_user_id").then((user_id) =>
+    //     {
+    //         // let user_save_id = user_id;
+    //         this.setState({
+    //             data: user_id,
+    //             // pin:user_id,
+    //
+    //         })
+    //     })
+    // }
+    // render()
+    // {
     return(
         <View style={styles.container}>
             <ScrollView>
@@ -35,7 +53,7 @@ export default class Profile extends React.Component {
                     <ImageBackground  source={require('../img/Rounded-Rectangle-21.jpg')} style={styles.image}>
                         <View style={styles.SectionStyleWeightLogback}>
                             <View style={styles.SectionStyleProgress}>
-                                <Text style={styles.headingTextname}>Pummy Sinha</Text>
+                                <Text style={styles.headingTextname}></Text>
                                 <View style={styles.SectionStyleAdvance}>
                                     <Image source={require('../img/gym-(3).png')}  style={styles.AdvanceBottomimg}/>
                                     <Text style={styles.AdvancedheadingText}>Advanced</Text>
@@ -138,12 +156,12 @@ export default class Profile extends React.Component {
 
                 </View>
 
+                {/*<TouchableOpacity style={styles.Bottombtn}*/}
+                {/*                  onPress={() => navigation.navigate('Homeredir')}>*/}
 
-                <TouchableOpacity style={styles.Bottombtn}>
+                {/*    <Text style={styles.headingText}>BACK</Text>*/}
 
-                    <Text style={styles.headingText}>BACK</Text>
-
-                </TouchableOpacity>
+                {/*</TouchableOpacity>*/}
 
             </ScrollView>
 
@@ -151,7 +169,7 @@ export default class Profile extends React.Component {
         </View>
 
     );
-    }
+    // }
 
 }
 

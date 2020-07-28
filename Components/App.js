@@ -120,6 +120,7 @@ const App: () => React$Node = () => {
                           component={Profile}
             />
 
+
         </Stack.Navigator>
       </NavigationContainer>
     </>

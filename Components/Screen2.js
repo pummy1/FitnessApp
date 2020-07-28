@@ -14,12 +14,14 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
+// import { useNavigation } from '@react-navigation/native';
+
 import AsyncStorage from '@react-native-community/async-storage';
 // import all basic components
 // const Screen2: () => React$Node = ({ navigation }) => {
 export default class Screen2 extends Component {
 
-  constructor(props) {
+    constructor(props) {
     super(props);
     this.state = {
       width: 110
@@ -29,13 +31,16 @@ export default class Screen2 extends Component {
   render() {
     //width of child is 110
     const width = `${100 / parseInt(this.state.width / 110)}%`;
-    return (
+      // const navigation = useNavigation();
+      return (
       <ScrollView>
         <View>
           <Text style={styles.headingstl}>Choose Your Style</Text>
         </View>
         <View style={styles.container} onLayout={this.onLayout.bind(this)}>
+
           <TouchableOpacity activeOpacity={0.5}
+                            // onPress={() => navigation.navigate('Classic')}
          >
             <View style={[styles.wrapper, {width: width}]}>
               <View style={styles.box}>
