@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useState} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -18,8 +18,10 @@ import {
     Button,
     Alert,
     Image,
+
     ImageBackground, TouchableOpacity,
 } from 'react-native';
+
 import {
     Header,
     LearnMoreLinks,
@@ -31,6 +33,7 @@ import FlipToggle from 'react-native-flip-toggle-button'
 import { StackActions, createAppContainer } from "react-navigation";
 
 const First: () => React$Node = ({ navigation }) => {
+
 // export default class First extends React.Component {
     return (
 
@@ -50,9 +53,8 @@ const First: () => React$Node = ({ navigation }) => {
                         <TouchableOpacity
                             style={styles.SubmitButtonStyle}
                             activeOpacity={.5}
-
                             onPress={() => navigation.navigate('Login')}
-                            // onPress={() => navigation.navigate('Athlete')}
+                            // onPress={() => navigation.navigate('Terms')}
                         >
                             <Text style={styles.TextStyle}> GET STARTED  </Text>
                         </TouchableOpacity>

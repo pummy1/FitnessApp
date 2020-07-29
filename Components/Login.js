@@ -278,8 +278,6 @@ const styles = StyleSheet.create({
         height: 40,
         alignSelf:'center',
         marginTop: 40,
-
-
         margin: 10,
     },
     SectionStyle: {

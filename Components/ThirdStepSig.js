@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
 
   SubmitButtonStyle: {
-    marginTop:50,
+    marginTop:10,
     paddingTop:15,
     paddingBottom:15,
     // marginLeft:40,
@@ -248,17 +248,20 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
     borderBottomWidth: 1,
     height: 50,
-    width: 375,
+    width: 350,
     marginTop:30,
-    marginLeft:15
+    // marginLeft:15,
+    alignSelf:'center',
+    margin: 10,
   },
   inputContainer2:{
     borderBottomColor: '#fff',
     borderBottomWidth: 1,
     height: 50,
-    width: 375,
     marginTop:10,
-    marginLeft:15
+    width: 350,
+    alignSelf:'center',
+    margin: 10,
   },
   Bottomimg: {
     flex: 1,

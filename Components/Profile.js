@@ -13,32 +13,53 @@ import { ImageBackground, StyleSheet, Text, View,Button
     , Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard,Animated , TouchableWithoutFeedback, CheckBox,ScrollView  } from "react-native";
 import App from './App';
 import AsyncStorage from '@react-native-community/async-storage';
+import Services from './config';
 // export default class Profile extends React.Component ({navigation}) {
 // const Profile: () => React$Node = () => {
 export default class Profile extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            width: 110
+            hits: '',
         };
-            AsyncStorage.getItem("Name").then((Name) =>
-            {
+    }
+
+    componentDidMount() {
+        return fetch('https://zanjo.io/projects/fitnessapp/profile.php?user_id=14')
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.setState(
+                    {
+                        hits: responseJson.hits,
+                    },
+                );
+            })
+            .catch((error) => { console.error(error);});
+    }
+
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         width: 110
+    //     };
+    //         AsyncStorage.getItem("Name").then((Name) =>
+    //         {
                 // alert(Name);
                 // this.data=Name;
-                this.state = { data: Name() }
+                // this.state = { data: Name() }
                 // alert(this.data);
                 // let user_save_id = user_id;
                 // this.setState({
                 //     data: Name,
                 //     // pin:user_id,
                 // })
-            })
-}
+//             })
+// }
 
     render()
     {
-        const { name } = this.state;
+        // const {hits} = this.state;
     return(
         <View style={styles.container}>
             <ScrollView>
@@ -46,8 +67,12 @@ export default class Profile extends React.Component {
                     <ImageBackground  source={require('../img/Rounded-Rectangle-21.jpg')} style={styles.image}>
                         <View style={styles.SectionStyleWeightLogback}>
                             <View style={styles.SectionStyleProgress}>
-                                {/*{name.map(item => <Text>{item}</Text>)}*/}
-                                <Text style={styles.headingTextname}>Pummy Sinha</Text>
+                                {/*{hits.map(hit =>*/}
+
+                                {/*    <Text style={styles.headingTextname}>{hit.first_name}</Text>*/}
+                                {/*)}*/}
+                                <Text style={styles.headingTextname}> {this.state.hits.firt_name}</Text>
+
                                 <View style={styles.SectionStyleAdvance}>
                                     <Image source={require('../img/gym-(3).png')}  style={styles.AdvanceBottomimg}/>
                                     <Text style={styles.AdvancedheadingText}>Advanced</Text>

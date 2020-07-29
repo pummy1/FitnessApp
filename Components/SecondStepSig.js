@@ -203,16 +203,24 @@ const SecondStepSig: () => React$Node = ({navigation}) =>
                   checked={femaleCheck} onPress={femaleRadioHandler}
               />
             </View>
-          <View style={styles.bottom}>
-            <TouchableOpacity
-              style={styles.Bottombtn}
-              onPress={handleSubmitPress}>
-              <Image
-                source={require('../img/arrow1.png')}
-                style={styles.Bottomimg}
-              />
-            </TouchableOpacity>
-          </View>
+          {/*<View style={styles.bottom}>*/}
+          {/*  <TouchableOpacity*/}
+          {/*    style={styles.Bottombtn}*/}
+          {/*    onPress={handleSubmitPress}>*/}
+          {/*    <Image*/}
+          {/*      source={require('../img/arrow1.png')}*/}
+          {/*      style={styles.Bottomimg}*/}
+          {/*    />*/}
+          {/*  </TouchableOpacity>*/}
+          {/*</View>*/}
+              <View>
+                  <TouchableOpacity
+                      style={styles.SubmitButtonStyle}
+                      activeOpacity={.5}
+                      onPress={handleSubmitPress}>
+                      <Image source={require('../img/arrow1.png')}  style={styles.TextStyle}/>
+                  </TouchableOpacity>
+              </View>
         </KeyboardAwareScrollView>
         </ImageBackground>
       </View>
@@ -440,14 +448,16 @@ const styles = StyleSheet.create({
         marginTop:-20
     },
     Bottombtn: {
-        flex: 1,
+        // flex: 1,
         height:36,
         width:36,
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
         backgroundColor: 'transparent',
-        marginTop:-30
+        marginTop:50,
+        paddingTop:15,
+        paddingBottom:15,
     },
     btnLeft: {
         flex: 1,
@@ -584,7 +594,26 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 0
-    }
+    },
+    SubmitButtonStyle: {
+        marginTop:10,
+        paddingTop:15,
+        paddingBottom:15,
+        // marginLeft:40,
+        // marginRight:40,
+        alignSelf: 'center',
+    },
+    TextStyle:{
+        // textAlign:'center',
+        // fontWeight:'bold',
+        // fontSize:17
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+        height : 50,
+        width:50,
+        alignSelf: 'center',
+    },
 });
 
 export default SecondStepSig;

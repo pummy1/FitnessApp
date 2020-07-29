@@ -21,23 +21,26 @@ import {
     ImageBackground, TouchableOpacity,
 
 } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 import RadioButton from '../Components/RadioButton';
 import Toast from 'react-native-simple-toast';
 
 const Terms: () => React$Node = ({navigation}) => {
 // export default class First extends React.Component {
+    const [toggleCheckBox, setToggleCheckBox] = useState(false)
     // const [checked, setChecked] = React.useState('first');
     const [terms, settermscondition] = useState(true);
     const [gettc, setTerms] = useState('true');
-    const termsRadioHandler = () => {
-        if(terms){
-            settermscondition(true);
-            setTerms('true');
-        }
-        console.log(gettc);
-    }
+    // const termsRadioHandler = () => {
+    //     if(terms){
+    //         settermscondition(true);
+    //         setTerms('true');
+    //     }
+    //     console.log(gettc);
+    // }
     const handleSubmitPressterms = async () => {
-        if(gettc){
+        console.log(toggleCheckBox);
+        if(toggleCheckBox==true){
             Toast.show('Successfully Registered');
             navigation.navigate('Login');
         }
@@ -63,11 +66,18 @@ const Terms: () => React$Node = ({navigation}) => {
                     <Text style = {styles.text}>Terms And Conditions</Text>
 
                 </View>
+
                 <View style = {styles.checkbox}>
-                    <RadioButton checked={terms} onPress={termsRadioHandler} />
-                    <View>
+                    <CheckBox
+                        disabled={false}
+                        value={toggleCheckBox}
+                        tintColors={{ true: '#fff', false: 'white' }}
+                        onValueChange={(newValue) => setToggleCheckBox(newValue)}
+                    />
+                    {/*<RadioButton checked={terms} onPress={termsRadioHandler} />*/}
+                    {/*<View>*/}
                         <Text style = {styles.termscondition}>I confirm that</Text>
-                    </View>
+                    {/*</View>*/}
                 </View>
 
                 <View>
@@ -145,6 +155,9 @@ const styles = StyleSheet.create({
         marginTop:40,
         // marginRight: 10
     },
+    // checkbox1:{
+    //     marginTop:20
+    // },
     signin:{
         color:'#fff',
         marginLeft:30,
@@ -156,7 +169,7 @@ const styles = StyleSheet.create({
         color:'#fff',
         marginLeft:50,
         fontSize:15,
-        marginTop:-20,
+        marginTop:-27,
         alignItems:'flex-start'
     }
 
