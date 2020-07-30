@@ -59,8 +59,8 @@ const Login: () => React$Node = ({ navigation }) => {
                         if(responseJson.status=="true"){
                             Toast.show('Successfully Login');
                                 AsyncStorage.setItem('id', responseJson.data['id']);
-                            AsyncStorage.setItem('Name', responseJson.f_l);
-                            AsyncStorage.setItem('BMI', responseJson.data['id']);
+                            // AsyncStorage.setItem('Name', responseJson.f_l);
+                            // AsyncStorage.setItem('BMI', responseJson.data['id']);
                                 navigation.navigate('Homeredir');
                                 // navigation.navigate('Profile');
                         }

@@ -25,10 +25,10 @@ export default class HomeScreen extends React.Component {
             width: 110
         };
     }
-    classiclick = () => {
-        alert("yes");
-        this.props.navigation.navigate('Classic');
-    }
+    // classiclick = () => {
+    //     alert("yes");
+    //     this.props.navigation.navigate('Classic');
+    // }
     render() {
         const width = `${100 / parseInt(this.state.width / 110)}%`;
         return (
@@ -36,139 +36,97 @@ export default class HomeScreen extends React.Component {
                 <View>
                     <View style={styles.container} onLayout={this.onLayout.bind(this)}>
                         <View style={[styles.wrapper, { width: width }]}>
-                            <View style={styles.box1}>
+                            <TouchableOpacity style={styles.box1} activeOpacity={0.5}>
                                 <Text style={styles.textstl}>CHEST & ARMS</Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                         <View style={[styles.wrapper, styles.wrapper1, { width: width }]}>
-                            <View style={styles.box}>
+                            <TouchableOpacity style={styles.box} activeOpacity={0.5}>
                                 <Image source={require('../img/next.png')} style={styles.next} />
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
                 <View>
                     <View>
-                        <Text style={styles.headingstl2}>Choose Your Style</Text>
+                        <Text style={styles.headingstl2}>CHOOSE YOUR STYLE</Text>
                     </View>
                     <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-                        <TouchableOpacity activeOpacity={0.5}
-                                          onPress={(this.classiclick)}
-                        >
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Classic</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Athlete</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Lean-X</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Crossshred</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Tone</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box2}>
-                                    <Text style={styles.textstl2}>Bulk</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box2,styles.border21]} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Classic</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={styles.box2} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Athlete</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box2,styles.border23]} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Lean-X</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box2, styles.border24]} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Crossshred</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={styles.box2} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Tone</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box2,styles.border26]} activeOpacity={0.5}>
+                                <Text style={styles.textstl2}>Bulk</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 <View>
                     <View>
-                        <Text style={styles.headingstl3}>Choose Your Style</Text>
+                        <Text style={styles.headingstl3}>CHOOSE YOUR DURATION</Text>
                     </View>
                     <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Classic</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Athlete</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Lean-X</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Mini</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Regular</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box3}>
-                                    <Text style={styles.textstl3}>Badass</Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box3, styles.border31]} activeOpacity={0.5}>
+                                <Text style={styles.textstl3}>Mini</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={styles.box3} activeOpacity={0.5}>
+                                <Text style={styles.textstl3}>Regular</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={[styles.box3, styles.border33]} activeOpacity={0.5}>
+                                <Text style={styles.textstl3}>Badass</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 <View>
                     <View>
-                        <Text style={styles.headingstl}>Preview</Text>
+                        <Text style={styles.headingstl4}>PREVIEW</Text>
                     </View>
                     <View style={styles.container} onLayout={this.onLayout.bind(this)}>
-                        <TouchableOpacity activeOpacity={0.5}>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box4}>
-                                    <Image
-                                        source={require('../img/Bench.png')}
-                                        style={styles.next4}
-                                    />
-                                </View>
-                            </View>
-                            <View style={[styles.wrapper3, { width: width }]}>
-                                <View style={styles.box14}>
-                                    <Text style={styles.textstl4}>
-                                        Isometric Hold to Bench Press
-                                    </Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
+
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={styles.box4} activeOpacity={0.5}>
+                                <Image
+                                    source={require('../img/Bench.png')}
+                                    style={styles.next4}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={[styles.wrapper3, { width: width }]}>
+                            <TouchableOpacity style={styles.box14} activeOpacity={0.5}>
+                                <Text style={styles.textstl4}>
+                                    Isometric Hold to Bench Press
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
             </ScrollView>
@@ -181,18 +139,6 @@ export default class HomeScreen extends React.Component {
             })
         }
     }
-    // render() {
-    //     //width of child is 110
-    //     return (
-    //         <View>
-    //             <Screen5 />
-    //             <Screen2 />
-    //             <Screen3 />
-    //             <Screen4 />
-    //         </View>
-    //     );
-    //
-    // }
 }
 const styles = StyleSheet.create({
     container: {
@@ -209,12 +155,16 @@ const styles = StyleSheet.create({
         height: 80,
         backgroundColor: '#3b4145',
         marginLeft: 200,
+        borderTopRightRadius: 20,
+        borderBottomRightRadius: 20,
     },
     box1: {
         width: 320,
         height: 80,
         marginLeft: 20,
         backgroundColor: '#3b4145',
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20,
     },
     wrapper: {
         marginVertical: 1,
@@ -235,16 +185,27 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     next: {
-        height: 30,
-        width: 30,
-        textAlign: "center",
-        marginTop: 20,
+        height: 20,
+        width: 20,
+        marginTop: 30,
         marginLeft: 5,
     },
     box2: {
-        width: 130,
+        width: 125,
         height: 100,
         backgroundColor: '#3b4145',
+    },
+    border21: {
+        borderTopLeftRadius:20,
+    },
+    border23: {
+        borderTopRightRadius: 20,
+    },
+    border24: {
+        borderBottomLeftRadius: 20,
+    },
+    border26: {
+        borderBottomRightRadius: 20,
     },
     wrapper2: {
         marginVertical: 1,
@@ -257,41 +218,47 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     headingstl2: {
-        fontWeight: 'bold',
-
+        letterSpacing:1,
         fontFamily: 'Open Sans',
         textAlign: 'center',
         paddingTop: 10,
         paddingBottom: 10,
-        fontSize: 22,
+        fontSize: 18,
         backgroundColor: '#2e3337',
         color: '#b0b0b0',
     },
     box3: {
-        width: 130,
+        width: 125,
         height: 100,
         backgroundColor: '#3b4145',
+    },
+    border31: {
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20,
+    },
+    border33: {
+        borderTopRightRadius: 20,
+        borderBottomRightRadius: 20,
     },
     wrapper3: {
         marginVertical: 1,
         alignItems: 'center',
     },
     textstl3: {
-
         fontFamily: 'Arial',
         color: '#fff',
         textAlign: 'center',
         paddingTop: 30,
     },
     headingstl3: {
-        fontWeight: 'bold',
+        letterSpacing:1,
         fontFamily: 'Open Sans',
         backgroundColor: '#2e3337',
         color: '#b0b0b0',
         textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 22,
+        paddingTop: 15,
+        paddingBottom: 8,
+        fontSize: 18,
     },
     box4: {
         width: 140,
@@ -304,7 +271,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#3b4145',
     },
     textstl4: {
-
         fontFamily: 'Arial',
         color: '#ffffff',
         textAlign: 'center',
@@ -312,15 +278,13 @@ const styles = StyleSheet.create({
         paddingTop: 30,
     },
     headingstl4: {
-        fontWeight: 'bold',
-
+        letterSpacing:1,
         fontFamily: 'Open Sans',
         backgroundColor: '#2e3337',
         color: '#b0b0b0',
         textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        fontSize: 22,
+        paddingBottom: 8,
+        fontSize: 18,
     },
     next4: {
         height: 100,

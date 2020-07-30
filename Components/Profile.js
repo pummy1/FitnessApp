@@ -13,7 +13,8 @@ import { ImageBackground, StyleSheet, Text, View,Button
     , Image, TextInput, TouchableOpacity, KeyboardAvoidingView ,Keyboard,Animated , TouchableWithoutFeedback, CheckBox,ScrollView  } from "react-native";
 import App from './App';
 import AsyncStorage from '@react-native-community/async-storage';
-import Services from './config';
+import {apiConfig} from './config';
+
 // export default class Profile extends React.Component ({navigation}) {
 // const Profile: () => React$Node = () => {
 export default class Profile extends React.Component {
@@ -21,21 +22,35 @@ export default class Profile extends React.Component {
         super(props);
         this.state = {
             hits: '',
+            dataSource: ""
         };
     }
 
     componentDidMount() {
-        return fetch('https://zanjo.io/projects/fitnessapp/profile.php?user_id=14')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState(
-                    {
-                        hits: responseJson.hits,
-                    },
-                );
-            })
-            .catch((error) => { console.error(error);});
+        AsyncStorage.getItem("id").then((user_id) => {
+            let user_save_id = user_id;
+            console.log(user_save_id);
+// alert(user_save_id);
+            return fetch(apiConfig.baseUrl + 'profile.php?user_id='+user_save_id)
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    this.data = responseJson.name;
+                    this.setState(
+                        {
+                            dataSource: responseJson,
+                            // hits: responseJson.hits['first_name'],
+                        },
+                    );
+                    // alert(responseJson);
+                    // console.log(this.data );
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        })
     }
+
+
 
 
     // constructor(props) {
@@ -59,6 +74,8 @@ export default class Profile extends React.Component {
 
     render()
     {
+        // const items = this.data;
+
         // const {hits} = this.state;
     return(
         <View style={styles.container}>
@@ -67,12 +84,7 @@ export default class Profile extends React.Component {
                     <ImageBackground  source={require('../img/Rounded-Rectangle-21.jpg')} style={styles.image}>
                         <View style={styles.SectionStyleWeightLogback}>
                             <View style={styles.SectionStyleProgress}>
-                                {/*{hits.map(hit =>*/}
-
-                                {/*    <Text style={styles.headingTextname}>{hit.first_name}</Text>*/}
-                                {/*)}*/}
-                                <Text style={styles.headingTextname}> {this.state.hits.firt_name}</Text>
-
+                                <Text style={styles.headingTextname}>{this.data}</Text>
                                 <View style={styles.SectionStyleAdvance}>
                                     <Image source={require('../img/gym-(3).png')}  style={styles.AdvanceBottomimg}/>
                                     <Text style={styles.AdvancedheadingText}>Advanced</Text>
