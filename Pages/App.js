@@ -10,14 +10,18 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 
 //Import External Screens
 import Login from './Login';
-import FirstStepSig from "./FirstStepSig";
+import FirstStepSig from './FirstStepSig';
+import Forget from './Forget';
+import SecondStepSig from './SecondStepSig';
+import ThirdStepSig from './ThirdStepSig';
+import Terms from './Terms';
 import First from './First';
-import Classic from "./Classic";
-import Athlete from "./Athlete";
-import Bulk from "./Bulk";
-import Crosshred from "./Crossshred";
-import Leanx from "./Leanx";
-import Tone from "./Tone";
+import Classic from './Classic';
+import Athlete from './Athlete';
+import Bulk from './Bulk';
+import Crosshred from './Crossshred';
+import Leanx from './Leanx';
+import Tone from './Tone';
 import HomeScreen from './HomeScreen';
 import SettingScreen from './SettingScreen';
 import CustomSidebarMenu from './CustomSidebarMenu';
@@ -210,11 +214,30 @@ const App = createStackNavigator({
     screen: FirstStepSig,
     navigationOptions: {
       headerShown: false,
-      // title: 'Demo Login',
-      // headerStyle: {
-      //   backgroundColor: '#307ecc',
-      // },
-      // headerTintColor: '#fff',
+    },
+  },
+  Forget: {
+    screen: Forget,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  SecondStepSig: {
+    screen: SecondStepSig,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  ThirdStepSig: {
+    screen: ThirdStepSig,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  Terms: {
+    screen: Terms,
+    navigationOptions: {
+      headerShown: false,
     },
   },
   DrawerNavigationRoutes: {

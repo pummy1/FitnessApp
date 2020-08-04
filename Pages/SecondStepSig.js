@@ -8,8 +8,8 @@
 import {apiConfig} from './config';
 import React, {useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import RadioButton from '../Components/RadioButton';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
+import RadioButton from '../Pages/RadioButton';
+// import FloatLabelTextInput from 'react-native-floating-label-text-input';
 import {
   ImageBackground,
   StyleSheet,
@@ -140,8 +140,9 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
             source={require('../img/fit-logo-Recovered.png')}
           />
 
-          <View style={styles.SectionStyleUsername}>
+          <View style={styles.SectionStyleUsername} accessible={true}>
             <TextInput
+              accessibilityLabel="Fname"
               style={styles.textinput}
               placeholder="FIRSTNAME"
               onChangeText={(Fname) => setFname(Fname)}
@@ -149,8 +150,9 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
               underlineColorAndroid={'transparent'}
             />
           </View>
-          <View style={styles.SectionStyle}>
+          <View style={styles.SectionStyle} accessible={true}>
             <TextInput
+              accessibilityLabel="Lname"
               style={styles.textinput}
               placeholder="LASTNAME"
               placeholderTextColor="#fff"
@@ -158,8 +160,9 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
               underlineColorAndroid={'transparent'}
             />
           </View>
-          <View style={styles.SectionStyle}>
+          <View style={styles.SectionStyle} accessible={true}>
             <TextInput
+              accessibilityLabel="Dob"
               style={styles.textinput}
               placeholder="DATE OF BIRTH"
               placeholderTextColor="#fff"
@@ -171,8 +174,9 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
           {/*    <TextInput  style={styles.textinput} placeholder="Date Of Birth" placeholderTextColor="#fff" underlineColorAndroid={'transparent'} />*/}
           {/*</View>*/}
 
-          <View style={styles.SectionStyle}>
+          <View style={styles.SectionStyle} accessible={true}>
             <TextInput
+              accessibilityLabel="mobile"
               style={styles.textinput}
               placeholder="Mobile No."
               placeholderTextColor="#fff"
@@ -181,6 +185,7 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
             />
           </View>
           <View
+            accessible={true}
             style={{
               ...styles.blockContainer,
               alignItems: 'center',
@@ -190,7 +195,7 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
               backgroundColor: '#00000000',
             }}>
             {/*<View style={styles.blockContainer}>*/}
-            <View style={styles.headingContainer}>
+            <View style={styles.headingContainer} accessible={true}>
               <Text style={styles.headingText}>Gender :</Text>
             </View>
           </View>
@@ -204,9 +209,17 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
               backgroundColor: '#00000000',
             }}>
             <Text style={styles.radioText}>Male: </Text>
-            <RadioButton onPress={maleRadioHandler} checked={maleCheck} />
+            <RadioButton
+              onPress={maleRadioHandler}
+              checked={maleCheck}
+              accessibilityLabel="male"
+            />
             <Text style={styles.radioText}> Female: </Text>
-            <RadioButton checked={femaleCheck} onPress={femaleRadioHandler} />
+            <RadioButton
+              checked={femaleCheck}
+              onPress={femaleRadioHandler}
+              accessibilityLabel="male"
+            />
           </View>
           {/*<View style={styles.bottom}>*/}
           {/*  <TouchableOpacity*/}
@@ -220,6 +233,8 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
           {/*</View>*/}
           <View>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="SignupSecond"
               style={styles.SubmitButtonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>

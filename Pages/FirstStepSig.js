@@ -86,7 +86,7 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               Toast.show('Success');
               navigation.navigate('SecondStepSig');
             } else {
-              navigation.navigate('FirstStepSig');
+              navigation.navigate('SignupFirstScreen');
               Toast.show('Something Went Wrong');
             }
 
@@ -120,13 +120,14 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
           <KeyboardAvoidingView
             behavior={Platform.OS == 'android' ? 'padding' : 'height'}
             style={styles.container}>
-            <View style={styles.SectionStyleUsername}>
+            <View style={styles.SectionStyleUsername} accessible={true}>
               <Image
                 source={require('../img/email.png')}
                 style={styles.imageStyle}
               />
 
               <TextInput
+                accessibilityLabel="email"
                 style={styles.textinput}
                 placeholder="Email"
                 placeholderTextColor="#fff"
@@ -135,13 +136,14 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               />
             </View>
 
-            <View style={styles.SectionStyle}>
+            <View style={styles.SectionStyle} accessible={true}>
               <Image
                 source={require('../img/password-(1).png')}
                 style={styles.imageStyle}
               />
 
               <TextInput
+                accessibilityLabel="password"
                 style={styles.textinput}
                 secureTextEntry={true}
                 placeholder="Password"
@@ -151,13 +153,14 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               />
             </View>
 
-            <View style={styles.SectionStyle}>
+            <View style={styles.SectionStyle} accessible={true}>
               <Image
                 source={require('../img/password.png')}
                 style={styles.imageStyle}
               />
 
               <TextInput
+                accessibilityLabel="confirmpassword"
                 style={styles.textinput}
                 secureTextEntry={true}
                 placeholder="Confirm Password"
@@ -169,6 +172,8 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               />
             </View>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="Signup"
               style={styles.buttoncontainer}
               activeOpacity={0.5}
               onPress={handleSubmitPress}>

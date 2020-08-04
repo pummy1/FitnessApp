@@ -48,14 +48,18 @@ const First: () => React$Node = ({navigation}) => {
           style={styles.logo}
         />
         <View>
-          <TouchableOpacity
-            style={styles.SubmitButtonStyle}
-            activeOpacity={0.5}
-            onPress={() => navigation.navigate('LoginScreen')}
-            // onPress={() => navigation.navigate('Profile')}
-          >
-            <Text style={styles.TextStyle}> GET STARTED </Text>
-          </TouchableOpacity>
+          <View style={styles.button}>
+            <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="Getstarted"
+              style={styles.SubmitButtonStyle}
+              activeOpacity={0.5}
+              onPress={() => navigation.navigate('LoginScreen')}
+              // onPress={() => navigation.navigate('Profile')}
+            >
+              <Text style={styles.TextStyle}> GET STARTED </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ImageBackground>
     </>
@@ -72,13 +76,18 @@ const styles = StyleSheet.create({
   container: {
     color: 'white',
   },
+  button: {
+    // flex: 2,
+    // justifyContent: 'flex-end',
+    // marginBottom: 0,
+  },
   SubmitButtonStyle: {
-    marginTop: 430,
+    justifyContent: 'flex-end',
+    marginTop: 390,
     paddingTop: 15,
     paddingBottom: 15,
     marginLeft: 40,
     marginRight: 40,
-    // backgroundColor:'#00BCD4',
     borderRadius: 50,
     borderWidth: 1,
     borderColor: '#fff',

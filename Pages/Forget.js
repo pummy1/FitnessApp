@@ -28,7 +28,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import FlipToggle from 'react-native-flip-toggle-button';
+// import FlipToggle from 'react-native-flip-toggle-button';
 import {apiConfig} from './config';
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from '@react-native-community/async-storage';

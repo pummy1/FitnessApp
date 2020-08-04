@@ -102,7 +102,7 @@ const Login: () => React$Node = ({navigation}) => {
 
             <TextInput
               style={styles.textinput}
-              accessibilityLabel={'26726855243'}
+              accessibilityLabel={'email'}
               placeholder="Email"
               placeholderTextColor="#fff"
               underlineColorAndroid={'transparent'}
@@ -117,6 +117,7 @@ const Login: () => React$Node = ({navigation}) => {
             />
 
             <TextInput
+              accessibilityLabel={'password'}
               style={styles.textinput}
               secureTextEntry={true}
               placeholder="Password"

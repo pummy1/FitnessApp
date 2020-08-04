@@ -22,7 +22,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import RadioButton from '../Components/RadioButton';
 import Toast from 'react-native-simple-toast';
 
 const Terms: () => React$Node = ({navigation}) => {
@@ -64,8 +63,9 @@ const Terms: () => React$Node = ({navigation}) => {
           <Text style={styles.text}>Terms And Conditions</Text>
         </View>
 
-        <View style={styles.checkbox}>
+        <View style={styles.checkbox} accessible={true}>
           <CheckBox
+            accessibilityLabel="confirm"
             disabled={false}
             value={toggleCheckBox}
             tintColors={{true: '#fff', false: 'white'}}
@@ -93,6 +93,8 @@ const Terms: () => React$Node = ({navigation}) => {
 
         <View>
           <TouchableOpacity
+            accessible={true}
+            accessibilityLabel="Accept"
             style={styles.SubmitButtonStyle}
             activeOpacity={0.5}
             onPress={handleSubmitPressterms}>
