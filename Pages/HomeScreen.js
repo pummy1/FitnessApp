@@ -20,7 +20,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <ScrollView>
       <View>
-        <View style={styles.container}>
+        <View style={[styles.container, styles.paddingtop]}>
           <View style={styles.wrapper}>
             <TouchableOpacity style={styles.box1} activeOpacity={0.5}>
               <Text style={styles.textstl}>CHEST & ARMS</Text>
@@ -38,7 +38,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.headingstl2}>CHOOSE YOUR STYLE</Text>
         </View>
         <View style={styles.container}>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={[styles.box2, styles.border21]}
               activeOpacity={0.5}
@@ -46,7 +46,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.textstl2}>Classic</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={styles.box2}
               activeOpacity={0.5}
@@ -54,7 +54,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.textstl2}>Athlete</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={[styles.box2, styles.border23]}
               activeOpacity={0.5}
@@ -62,7 +62,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.textstl2}>Lean-X</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={[styles.box2, styles.border24]}
               activeOpacity={0.5}
@@ -70,7 +70,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.textstl2}>Crossshred</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={styles.box2}
               activeOpacity={0.5}
@@ -78,7 +78,7 @@ const HomeScreen = ({navigation}) => {
               <Text style={styles.textstl2}>Tone</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper2}>
             <TouchableOpacity
               style={[styles.box2, styles.border26]}
               activeOpacity={0.5}
@@ -118,8 +118,8 @@ const HomeScreen = ({navigation}) => {
         <View>
           <Text style={styles.headingstl4}>PREVIEW</Text>
         </View>
-        <View style={styles.container}>
-          <View style={styles.wrapper3}>
+        <View style={[styles.container, styles.bottompadding]}>
+          <View style={styles.wrapper}>
             <TouchableOpacity
               style={[styles.box4, styles.border41]}
               activeOpacity={0.5}>
@@ -129,7 +129,7 @@ const HomeScreen = ({navigation}) => {
               />
             </TouchableOpacity>
           </View>
-          <View style={styles.wrapper3}>
+          <View style={styles.wrapper}>
             <TouchableOpacity
               style={[styles.box14, styles.border42]}
               activeOpacity={0.5}>
@@ -150,25 +150,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     paddingTop: 4,
+    paddingLeft: 15,
+  },
+  paddingtop: {
+    paddingTop: 20,
   },
   box: {
     width: 50,
     height: 80,
     backgroundColor: '#3b4145',
-    marginLeft: 200,
+    position: 'relative',
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
   },
   box1: {
     width: 320,
     height: 80,
-    marginLeft: 20,
+    marginLeft: 1,
+    position: 'relative',
     backgroundColor: '#3b4145',
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
   },
   wrapper: {
-    marginVertical: 1,
+    textAlign: 'center',
   },
   textstl: {
     fontFamily: 'Open Sans',
@@ -211,6 +216,7 @@ const styles = StyleSheet.create({
   wrapper2: {
     marginVertical: 1,
     alignItems: 'center',
+    marginHorizontal: 1,
   },
   textstl2: {
     fontFamily: 'Arial',
@@ -243,6 +249,7 @@ const styles = StyleSheet.create({
   },
   wrapper3: {
     alignItems: 'center',
+    marginHorizontal: 1,
   },
   textstl3: {
     fontFamily: 'Arial',
@@ -261,15 +268,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   box4: {
-    width: 140,
+    width: 120,
     height: 100,
-    marginLeft: 20,
+    marginLeft: 1,
     backgroundColor: '#3b4145',
   },
   box14: {
-    width: 270,
+    width: 260,
     height: 100,
-    marginLeft: 120,
     backgroundColor: '#3b4145',
   },
   border41: {
@@ -300,6 +306,9 @@ const styles = StyleSheet.create({
   next4: {
     height: 100,
     width: 120,
+  },
+  bottompadding: {
+    paddingBottom: 20,
   },
 });
 export default HomeScreen;

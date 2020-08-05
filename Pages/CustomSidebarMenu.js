@@ -10,6 +10,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+
 import {Icon} from 'react-native-elements';
 import AsyncStorage from '@react-native-community/async-storage';
 import {useNavigation} from '@react-navigation/native';
@@ -47,9 +48,14 @@ const CustomSidebarMenu = (props) => {
   //   },
   // ];
 
-  let itemsUser = [
+  //Setting up the Main Top Large Image of the Custom Sidebar
+  // this.proileImage ='../img/Recovered.png';
+  //Array of the sidebar navigation option with icon and screen to navigate
+  //This screens can be any screen defined in Drawer Navigator in App.js
+  //You can find the Icons from here https://material.io/tools/icons/
+  let items = [
     {
-      navOptionThumb: 'image',
+      navOptionThumb: 'camera',
       navOptionName: 'Home',
       screenToNavigate: 'HomeScreen',
     },
@@ -64,31 +70,12 @@ const CustomSidebarMenu = (props) => {
       screenToNavigate: 'ChangeOptionGuest',
     },
     {
-      navOptionThumb: 'image',
+      navOptionThumb: 'camera',
       navOptionName: 'Contact Us',
       screenToNavigate: 'ChangeOptionGuest',
     },
     {
       navOptionThumb: 'image',
-      navOptionName: 'Logout',
-      screenToNavigate: 'logout',
-    },
-  ];
-
-  let itemsGuest = [
-    {
-      navOptionName: 'Guest Home Screen',
-      screenToNavigate: 'HomeScreen',
-    },
-    {
-      navOptionName: 'Guest Setting Screen',
-      screenToNavigate: 'SettingsScreen',
-    },
-    {
-      navOptionName: 'Change Options for the User',
-      screenToNavigate: 'ChangeOptionUser',
-    },
-    {
       navOptionName: 'Logout',
       screenToNavigate: 'logout',
     },
@@ -112,17 +99,22 @@ const CustomSidebarMenu = (props) => {
   };
 
   return (
-    <View style={stylesSidebar.sideMenuContainer}>
-      <View style={stylesSidebar.profileHeader}>
-        <View style={stylesSidebar.profileHeaderPicCircle}>
-          <Text style={{fontSize: 25, color: '#307ecc'}}>
-            {'About React'.charAt(0)}
-          </Text>
-        </View>
-        <Text style={stylesSidebar.profileHeaderText}>AboutReact</Text>
+    <View style={styles.container}>
+      <View
+        style={{
+          width: '100%',
+          height: '20%',
+          backgroundColor: '#3b4145',
+          alignItems: 'center',
+        }}>
+        <Image
+          source={require('../img/Recovered.png')}
+          style={styles.sideMenuProfileIcon}
+        />
+        {/*Divider between Top Image and Sidebar Option*/}
       </View>
-      <View style={stylesSidebar.profileHeaderLine} />
-      <View style={{width: '100%', flex: 1}}>
+      {/* <View style={stylesSidebar.profileHeaderLine} /> */}
+      {/* <View style={{width: '100%', flex: 1}}>
         {itemsUser.map((item, key) => (
           <View
             style={{
@@ -147,73 +139,119 @@ const CustomSidebarMenu = (props) => {
             </Text>
           </View>
         ))}
+      </View> */}
+
+      <ScrollView>
+        <View style={styles.sideMenuContainer}>
+          {/*Setting up Navigation Options from option array using loop*/}
+          <View style={{width: '100%'}}>
+            {items.map((item, key) => (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                  backgroundColor:
+                    global.currentScreenIndex === item.screenToNavigate
+                      ? '#f9a616'
+                      : '#ffffff',
+                }}
+                key={key}
+                onStartShouldSetResponder={() =>
+                  handleClick(key, item.screenToNavigate)
+                }>
+                <View style={{marginRight: 10, marginLeft: 20}}>
+                  <Icon name={item.navOptionThumb} size={25} color="#3b4145" />
+                </View>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    color:
+                      global.currentScreenIndex === key ? '#ffffff' : '#3b4145',
+                  }}>
+                  {item.navOptionName}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      </ScrollView>
+
+      <View style={styles.footerContainer}>
+        <Text style={styles.textSt}>Logout</Text>
       </View>
     </View>
   );
 };
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  sideMenuContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  sideMenuProfileIcon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  footerContainer: {
+    padding: 20,
+    backgroundColor: '#f9a616',
+    alignItems: 'center',
+  },
+  textSt: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+});
+
+// const stylesSidebar = StyleSheet.create({
 //   sideMenuContainer: {
 //     width: '100%',
 //     height: '100%',
-//     backgroundColor: '#fff',
+//     backgroundColor: '#307ecc',
+//     paddingTop: 40,
+//     color: 'white',
+//   },
+//   profileHeader: {
+//     flexDirection: 'row',
+//     backgroundColor: '#307ecc',
+//     padding: 15,
+//     textAlign: 'center',
+//   },
+//   profileHeaderPicCircle: {
+//     width: 60,
+//     height: 60,
+//     borderRadius: 60 / 2,
+//     color: 'white',
+//     backgroundColor: '#ffffff',
+//     textAlign: 'center',
+//     justifyContent: 'center',
 //     alignItems: 'center',
-//
+//   },
+//   profileHeaderText: {
+//     color: 'white',
+//     alignSelf: 'center',
+//     paddingHorizontal: 10,
+//     fontWeight: 'bold',
+//   },
+//   profileHeaderLine: {
+//     height: 1,
+//     marginHorizontal: 20,
+//     backgroundColor: '#e2e2e2',
+//     marginTop: 15,
+//     marginBottom: 10,
 //   },
 //   sideMenuProfileIcon: {
 //     alignItems: 'center',
 //     justifyContent: 'center',
 //     marginTop: 40,
 //   },
-//   footerContainer: {
-//     padding: 20,
-//     backgroundColor: '#f9a616',
-//     alignItems: 'center',
-//   },
-//   textSt: {
-//     color: '#fff',
-//     fontWeight: 'bold',
-//     fontSize:20,
-//   },
 // });
-const stylesSidebar = StyleSheet.create({
-  sideMenuContainer: {
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#307ecc',
-    paddingTop: 40,
-    color: 'white',
-  },
-  profileHeader: {
-    flexDirection: 'row',
-    backgroundColor: '#307ecc',
-    padding: 15,
-    textAlign: 'center',
-  },
-  profileHeaderPicCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 60 / 2,
-    color: 'white',
-    backgroundColor: '#ffffff',
-    textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profileHeaderText: {
-    color: 'white',
-    alignSelf: 'center',
-    paddingHorizontal: 10,
-    fontWeight: 'bold',
-  },
-  profileHeaderLine: {
-    height: 1,
-    marginHorizontal: 20,
-    backgroundColor: '#e2e2e2',
-    marginTop: 15,
-    marginBottom: 10,
-  },
-});
 export default CustomSidebarMenu;
