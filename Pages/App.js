@@ -23,6 +23,7 @@ import Crosshred from './Crossshred';
 import Leanx from './Leanx';
 import Tone from './Tone';
 import HomeScreen from './HomeScreen';
+import Profile from './Profile';
 import SettingScreen from './SettingScreen';
 import CustomSidebarMenu from './CustomSidebarMenu';
 import NavigationDrawerHeader from './NavigationDrawerHeader';
@@ -132,6 +133,19 @@ const EightActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+const NinethActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: Profile,
+    navigationOptions: ({navigation}) => ({
+      title: 'Classic',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#f9a616',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 const DrawerNavigationRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -180,6 +194,12 @@ const DrawerNavigationRoutes = createDrawerNavigator(
       screen: EightActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Classic Screen',
+      },
+    },
+    ProfileScreen: {
+      screen: NinethActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Profile',
       },
     },
   },

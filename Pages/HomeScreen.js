@@ -22,12 +22,20 @@ const HomeScreen = ({navigation}) => {
       <View>
         <View style={[styles.container, styles.paddingtop]}>
           <View style={styles.wrapper}>
-            <TouchableOpacity style={styles.box1} activeOpacity={0.5}>
+            <TouchableOpacity
+              style={styles.box1}
+              activeOpacity={0.5}
+              accessible={true}
+              accessibilityLabel="chest">
               <Text style={styles.textstl}>CHEST & ARMS</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.wrapper}>
-            <TouchableOpacity style={styles.box} activeOpacity={0.5}>
+            <TouchableOpacity
+              style={styles.box}
+              activeOpacity={0.5}
+              accessible={true}
+              accessibilityLabel="chest">
               <Image source={require('../img/next.png')} style={styles.next} />
             </TouchableOpacity>
           </View>
@@ -40,6 +48,8 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.container}>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="ClassicScreen"
               style={[styles.box2, styles.border21]}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('ClassicScreen')}>
@@ -48,6 +58,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="AthleteScreen"
               style={styles.box2}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('AthleteScreen')}>
@@ -56,6 +68,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="LeanxScreen"
               style={[styles.box2, styles.border23]}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('LeanxScreen')}>
@@ -64,6 +78,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="CrosshredScreen"
               style={[styles.box2, styles.border24]}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('CrosshredScreen')}>
@@ -72,6 +88,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="ToneScreen"
               style={styles.box2}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('ToneScreen')}>
@@ -80,6 +98,8 @@ const HomeScreen = ({navigation}) => {
           </View>
           <View style={styles.wrapper2}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="BulkScreen"
               style={[styles.box2, styles.border26]}
               activeOpacity={0.5}
               onPress={() => navigation.navigate('BulkScreen')}>

@@ -195,7 +195,7 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
               backgroundColor: '#00000000',
             }}>
             {/*<View style={styles.blockContainer}>*/}
-            <View style={styles.headingContainer} accessible={true}>
+            <View style={styles.headingContainer}>
               <Text style={styles.headingText}>Gender :</Text>
             </View>
           </View>
@@ -210,15 +210,17 @@ const SecondStepSig: () => React$Node = ({navigation}) => {
             }}>
             <Text style={styles.radioText}>Male: </Text>
             <RadioButton
+              accessible={true}
               onPress={maleRadioHandler}
               checked={maleCheck}
               accessibilityLabel="male"
             />
             <Text style={styles.radioText}> Female: </Text>
             <RadioButton
+              accessible={true}
               checked={femaleCheck}
               onPress={femaleRadioHandler}
-              accessibilityLabel="male"
+              accessibilityLabel="female"
             />
           </View>
           {/*<View style={styles.bottom}>*/}

@@ -67,7 +67,7 @@ const CustomSidebarMenu = (props) => {
     {
       navOptionThumb: 'image',
       navOptionName: 'Profile',
-      screenToNavigate: 'ChangeOptionGuest',
+      screenToNavigate: 'ProfileScreen',
     },
     {
       navOptionThumb: 'camera',

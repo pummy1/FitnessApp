@@ -158,12 +158,17 @@ const Login: () => React$Node = ({navigation}) => {
           {/*  </TouchableOpacity>*/}
           {/*</View>*/}
           <View>
-            <TouchableOpacity onPress={() => navigation.navigate('Forget')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Forget')}
+              accessible={true}
+              accessibilityLabel="Forget">
               <Text style={styles.fd}>Forgot Password ?</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.bottom}>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="SignIn"
               style={styles.buttoncontainerSignIn}
               onPress={() => navigation.navigate('SignupFirstScreen')}>
               <Text style={styles.headerbarButonSignIn}>

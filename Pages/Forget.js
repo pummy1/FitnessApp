@@ -91,6 +91,8 @@ const Forget: () => React$Node = ({navigation}) => {
 
         <View style={styles.inputContainer}>
           <TextInput
+            accessible={true}
+            accessibilityLabel="email"
             style={styles.input}
             underlineColorAndroid="transparent"
             placeholder="@Email"
@@ -101,6 +103,8 @@ const Forget: () => React$Node = ({navigation}) => {
         </View>
         <View>
           <TouchableOpacity
+            accessible={true}
+            accessibilityLabel="Submit"
             style={styles.SubmitButtonStyle}
             activeOpacity={0.5}
             onPress={handleSubmitPressforget}>

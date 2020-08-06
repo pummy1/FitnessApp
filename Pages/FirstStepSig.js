@@ -127,6 +127,7 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               />
 
               <TextInput
+                accessible={true}
                 accessibilityLabel="email"
                 style={styles.textinput}
                 placeholder="Email"
@@ -143,6 +144,7 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
               />
 
               <TextInput
+                accessible={true}
                 accessibilityLabel="password"
                 style={styles.textinput}
                 secureTextEntry={true}
@@ -204,6 +206,8 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
 
             <View style={styles.bottom}>
               <TouchableOpacity
+                accessible={true}
+                accessibilityLabel="Login"
                 style={styles.buttoncontainerSignIn}
                 onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.headerbarButonSignIn}>
@@ -242,7 +246,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Verdana',
-    marginBottom: 10,
+    // marginBottom: 40,
     color: '#595856',
   },
   header: {
@@ -357,7 +361,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     justifyContent: 'center',
     alignSelf: 'center',
-    marginBottom: 0,
+    // marginBottom: 70,
+    marginTop: 40,
   },
   headerbarButonSignIn: {
     fontSize: 15,
@@ -438,7 +443,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    marginBottom: -50,
+    marginBottom: 70,
   },
 });
 export default FirstStepSig;
