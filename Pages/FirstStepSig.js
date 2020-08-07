@@ -130,7 +130,7 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
                 accessible={true}
                 accessibilityLabel="email"
                 style={styles.textinput}
-                placeholder="Email"
+                placeholder="SignupEmail"
                 placeholderTextColor="#fff"
                 underlineColorAndroid={'transparent'}
                 onChangeText={(Username) => setUsername(Username)}
@@ -148,7 +148,7 @@ const FirstStepSig: () => React$Node = ({navigation}) => {
                 accessibilityLabel="password"
                 style={styles.textinput}
                 secureTextEntry={true}
-                placeholder="Password"
+                placeholder="SignupPassword"
                 onChangeText={(Userpassword) => setUserpassword(Userpassword)}
                 placeholderTextColor="#fff"
                 underlineColorAndroid={'transparent'}

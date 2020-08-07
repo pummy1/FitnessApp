@@ -168,11 +168,11 @@ const Login: () => React$Node = ({navigation}) => {
           <View style={styles.bottom}>
             <TouchableOpacity
               accessible={true}
-              accessibilityLabel="SignIn"
+              accessibilityLabel="SignUp"
               style={styles.buttoncontainerSignIn}
               onPress={() => navigation.navigate('SignupFirstScreen')}>
               <Text style={styles.headerbarButonSignIn}>
-                Dont have account ? Sign in Now
+                Dont have account ? Sign Up Now
               </Text>
             </TouchableOpacity>
           </View>

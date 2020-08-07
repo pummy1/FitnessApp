@@ -62,7 +62,7 @@ const CustomSidebarMenu = (props) => {
     {
       navOptionThumb: 'image',
       navOptionName: 'About Us',
-      screenToNavigate: 'SettingsScreen',
+      screenToNavigate: 'AboutScreen',
     },
     {
       navOptionThumb: 'image',
@@ -72,7 +72,7 @@ const CustomSidebarMenu = (props) => {
     {
       navOptionThumb: 'camera',
       navOptionName: 'Contact Us',
-      screenToNavigate: 'ChangeOptionGuest',
+      screenToNavigate: 'ContactScreen',
     },
     {
       navOptionThumb: 'image',
@@ -85,13 +85,15 @@ const CustomSidebarMenu = (props) => {
     if (screenToNavigate == 'logout') {
       props.navigation.toggleDrawer();
       props.navigation.navigate('LoginScreen');
-    } else if (screenToNavigate == 'ChangeOptionGuest') {
-      props.navigation.toggleDrawer();
-      setLoginAs('guest');
-    } else if (screenToNavigate == 'ChangeOptionUser') {
-      props.navigation.toggleDrawer();
-      setLoginAs('user');
-    } else {
+    }
+    // else if (screenToNavigate == 'ChangeOptionGuest') {
+    //   props.navigation.toggleDrawer();
+    //   setLoginAs('guest');
+    // } else if (screenToNavigate == 'ChangeOptionUser') {
+    //   props.navigation.toggleDrawer();
+    //   setLoginAs('user');
+    // }
+    else {
       props.navigation.toggleDrawer();
       global.currentScreenIndex = screenToNavigate;
       props.navigation.navigate(screenToNavigate);

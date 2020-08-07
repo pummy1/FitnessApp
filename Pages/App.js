@@ -23,6 +23,8 @@ import Crosshred from './Crossshred';
 import Leanx from './Leanx';
 import Tone from './Tone';
 import HomeScreen from './HomeScreen';
+import ContactUs from '.ContactUs';
+import AboutUs from '.AboutUs';
 import Profile from './Profile';
 import SettingScreen from './SettingScreen';
 import CustomSidebarMenu from './CustomSidebarMenu';
@@ -146,6 +148,32 @@ const NinethActivity_StackNavigator = createStackNavigator({
     }),
   },
 });
+const TenthActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: ContactUs,
+    navigationOptions: ({navigation}) => ({
+      title: 'Classic',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#f9a616',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
+const ElevethActivity_StackNavigator = createStackNavigator({
+  First: {
+    screen: AboutUs,
+    navigationOptions: ({navigation}) => ({
+      title: 'Classic',
+      headerLeft: () => <NavigationDrawerHeader navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#f9a616',
+      },
+      headerTintColor: '#fff',
+    }),
+  },
+});
 const DrawerNavigationRoutes = createDrawerNavigator(
   {
     HomeScreen: {
@@ -198,6 +226,18 @@ const DrawerNavigationRoutes = createDrawerNavigator(
     },
     ProfileScreen: {
       screen: NinethActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Profile',
+      },
+    },
+    ContactScreen: {
+      screen: TenthActivity_StackNavigator,
+      navigationOptions: {
+        drawerLabel: 'Profile',
+      },
+    },
+    AboutScreen: {
+      screen: ElevethActivity_StackNavigator,
       navigationOptions: {
         drawerLabel: 'Profile',
       },
